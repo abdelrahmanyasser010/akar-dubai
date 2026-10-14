@@ -1,1053 +1,1158 @@
 <!DOCTYPE html>
-
 <html lang="en" dir="ltr">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Property Platform Architecture, Roles & Operational Brief</title>
-
     <!-- Tailwind CSS CDN -->
-
     <script src="https://cdn.tailwindcss.com"></script>
-
     <!-- FontAwesome Icons -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <!-- Google Fonts (Tajawal & Inter) -->
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-
     <style>
-
         body { 
-
             font-family: 'Inter', 'Tajawal', sans-serif; 
-
-            background-color: #070b19; /* Darker background for blueprint feel */
-
+            background-color: #070b19; /* Dark blueprint canvas */
             color: #f1f5f9; 
-
             scroll-behavior: smooth;
-
         }
-
+        
         /* Glassmorphism Effect */
-
         .glass-box {
-
             background: rgba(15, 23, 42, 0.75);
-
             backdrop-filter: blur(12px);
-
             border: 1px solid rgba(255, 255, 255, 0.08);
-
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-
         }
 
         /* Animated Flow Lines */
-
         .flow-line {
-
             stroke-dasharray: 8;
-
             animation: dash 1.5s linear infinite;
-
         }
-
         @keyframes dash {
-
             to { stroke-dashoffset: -16; }
-
         }
 
         .pulse-card {
-
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
+        }
+        .pulse-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px -5px rgba(59, 130, 246, 0.35);
+            border-color: rgba(59, 130, 246, 0.6);
         }
 
-        .pulse-card:hover {
-
-            transform: translateY(-5px);
-
-            box-shadow: 0 12px 25px -5px rgba(59, 130, 246, 0.4);
-
-            border-color: rgba(59, 130, 246, 0.6);
-
+        /* FAQ Accordion Styling */
+        .faq-card {
+            transition: all 0.25s ease-in-out;
+        }
+        .faq-card:hover {
+            border-color: #3b82f6;
         }
 
         /* Custom scrollbar */
-
         ::-webkit-scrollbar {
-
             width: 8px;
-
         }
-
         ::-webkit-scrollbar-track {
-
-            background: #0f172a;
-
+            background: #070b19;
         }
-
         ::-webkit-scrollbar-thumb {
-
             background: #1e293b;
-
             border-radius: 4px;
-
         }
-
         ::-webkit-scrollbar-thumb:hover {
-
             background: #3b82f6;
-
         }
-
     </style>
-
 </head>
+<body class="p-3 sm:p-5 md:p-8">
 
-<body class="p-3 sm:p-5 md:p-8 min-h-screen">
-
-    <!-- Navbar with Language Switcher -->
-
-    <nav class="max-w-6xl mx-auto flex flex-wrap items-center justify-between py-3.5 px-5 glass-box rounded-2xl mb-8 sticky top-3 z-50">
-
-        <div class="flex items-center gap-3">
-
+    <!-- Top Navigation Bar -->
+    <nav class="max-w-6xl mx-auto flex flex-wrap items-center justify-between py-3.5 px-5 glass-box rounded-2xl mb-8 sticky top-4 z-50">
+        <div class="flex items-center space-x-3 rtl:space-x-reverse">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
-
                 <i class="fa-solid fa-city text-lg"></i>
-
             </div>
-
             <div>
-
-                <span class="font-extrabold text-base sm:text-lg text-white block leading-tight">
-
-                    <span class="lang-en">Akar Platform</span>
-
-                    <span class="lang-ar hidden">منصة عقار دبي</span>
-
-                </span>
-
-                <span class="text-xs text-blue-400 font-medium">
-
-                    <span class="lang-en">Visual Blueprint & Proposal</span>
-
-                    <span class="lang-ar hidden">اللوحة المعمارية التفاعلية</span>
-
-                </span>
-
+                <span class="font-extrabold text-lg text-white tracking-wide block">AKAR DUBAI</span>
+                <span class="text-[10px] text-blue-400 font-medium block">Enterprise Property Architecture</span>
             </div>
-
         </div>
 
-        <div class="flex items-center gap-2.5 sm:gap-3 mt-3 sm:mt-0 text-xs sm:text-sm">
-
-            <a href="#blueprint" class="text-slate-300 hover:text-blue-400 transition font-medium px-2 py-1 hidden lg:inline">
-
-                <span class="lang-en">Blueprint</span>
-
-                <span class="lang-ar hidden">اللوحة المعمارية</span>
-
+        <!-- Section Navigation Links -->
+        <div class="hidden md:flex items-center space-x-5 rtl:space-x-reverse text-xs font-semibold text-slate-300">
+            <a href="#stats" class="hover:text-blue-400 transition">
+                <span class="lang-en">Overview</span>
+                <span class="lang-ar hidden">نظرة عامة</span>
             </a>
-
-            <a href="#flows" class="text-slate-300 hover:text-blue-400 transition font-medium px-2 py-1 hidden lg:inline">
-
-                <span class="lang-en">Flows</span>
-
-                <span class="lang-ar hidden">التدفقات</span>
-
+            <a href="#roles" class="hover:text-blue-400 transition">
+                <span class="lang-en">Roles & RACI</span>
+                <span class="lang-ar hidden">الأدوار والمسؤوليات</span>
             </a>
-
-            <a href="#architecture" class="text-slate-300 hover:text-blue-400 transition font-medium px-2 py-1 hidden lg:inline">
-
+            <a href="#flows" class="hover:text-blue-400 transition">
+                <span class="lang-en">Financial Flows</span>
+                <span class="lang-ar hidden">التدفقات المالية</span>
+            </a>
+            <a href="#architecture" class="hover:text-blue-400 transition">
                 <span class="lang-en">Architecture</span>
-
                 <span class="lang-ar hidden">المعمارية</span>
-
             </a>
-
-            <a href="#phases" class="text-slate-300 hover:text-blue-400 transition font-medium px-2 py-1 hidden lg:inline">
-
-                <span class="lang-en">Cost</span>
-
-                <span class="lang-ar hidden">التكلفة</span>
-
+            <a href="#phases" class="hover:text-blue-400 transition">
+                <span class="lang-en">Milestones</span>
+                <span class="lang-ar hidden">المراحل والدفعات</span>
             </a>
+            <a href="#faq" class="hover:text-blue-400 transition">
+                <span class="lang-en">FAQ</span>
+                <span class="lang-ar hidden">الأسئلة الشائعة</span>
+            </a>
+        </div>
 
+        <div class="flex items-center gap-2.5 mt-3 sm:mt-0">
             <!-- Language Switcher Button -->
-
-            <button id="langToggleBtn" onclick="toggleLanguage()" class="bg-slate-800 hover:bg-slate-700 text-blue-400 hover:text-white border border-slate-700 font-bold px-3 py-1.5 rounded-xl text-xs sm:text-sm flex items-center gap-1.5 transition active:scale-95 shadow-sm">
-
-                <i class="fa-solid fa-language text-base"></i>
-
+            <button onclick="toggleLanguage()" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 px-3.5 py-1.5 rounded-xl text-xs font-bold transition shadow-sm">
+                <i class="fa-solid fa-globe text-blue-400"></i>
                 <span id="langBtnText">العربية</span>
-
             </button>
 
+            <!-- PDF Download Button (Direct link to official proposal.pdf) -->
+            <a href="proposal.pdf" download="المخرجات.pdf" class="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white px-4 py-1.5 rounded-xl text-xs font-bold transition shadow-md shadow-blue-600/30">
+                <i class="fa-solid fa-file-pdf text-red-300"></i>
+                <span class="lang-en">Proposal PDF</span>
+                <span class="lang-ar hidden">المخرجات (PDF)</span>
+            </a>
         </div>
-
     </nav>
 
-    <!-- Header Section -->
-
-    <header class="text-center my-6 md:my-10 max-w-4xl mx-auto">
-
-        <span class="bg-blue-600/10 text-blue-400 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full border border-blue-500/30 inline-flex items-center gap-2 mb-3">
-
-            <i class="fa-solid fa-compass-drafting"></i>
-
-            <span class="lang-en">Interactive System Blueprint</span>
-
-            <span class="lang-ar hidden">خريطة التكامل البصري التفاعلية</span>
-
+    <!-- Header / Hero Section -->
+    <header class="text-center my-6 md:my-10 max-w-4xl mx-auto px-2">
+        <span class="bg-blue-500/10 text-blue-400 text-xs font-bold px-4 py-1.5 rounded-full border border-blue-500/20 inline-block mb-3">
+            <span class="lang-en"><i class="fa-solid fa-code-branch mr-1.5"></i> Comprehensive Engineering Architecture & Proposal Brief</span>
+            <span class="lang-ar hidden"><i class="fa-solid fa-code-branch ml-1.5"></i> الدليل الهندسي والتشغيلي المعتمد لمقترح المنصة العقارية</span>
         </span>
-
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2 mb-4 leading-tight">
-
-            <span class="lang-en">Platform Visual Architecture</span>
-
-            <span class="lang-ar hidden">اللوحة البصرية الشاملة للمنصة</span>
-
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-2 mb-4 tracking-tight leading-tight">
+            <span class="lang-en">Property Platform Architecture & Operational Brief</span>
+            <span class="lang-ar hidden">المخطط الهندسي والتشغيلي لمنصة إدارة وتأجير العقارات</span>
         </h1>
-
-        <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
-
-            <span class="lang-en">A high-level view of how roles connect, how money flows, and how operations intersect seamlessly.</span>
-
-            <span class="lang-ar hidden">نظرة هندسية شاملة توضح كيف ترتبط الأدوار، تتدفق الأموال، وتتداخل العمليات ببعضها بصرياً في آنٍ واحد.</span>
-
+        <p class="text-slate-400 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+            <span class="lang-en">An end-to-end blueprint detailing operational separation across 6 system roles, automated rent collections, spending approval thresholds, multi-tenancy isolation, certified digital contract integration, and milestone delivery.</span>
+            <span class="lang-ar hidden">مخطط شامل يوضح فصل الصلاحيات بين 6 أدوار تشغيلية، وأتمتة دورة تحصيل الإيجارات وسقف الصيانة، ومعمارية عزل الشركات، والتكامل مع منصات العقود الإلكترونية، وجدول التسليم المالي.</span>
         </p>
-
     </header>
 
-    <!-- Key Project Stats Bar (Glassmorphism) -->
-
-    <section class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 my-8">
-
-        <div class="glass-box p-5 rounded-2xl text-center border-t-4 border-t-emerald-500">
-
-            <span class="text-xs text-slate-400 block mb-1">
-
-                <span class="lang-en">Total Investment</span>
-
-                <span class="lang-ar hidden">إجمالي التكلفة</span>
-
-            </span>
-
-            <span class="text-2xl font-black text-emerald-400">$3,300 USD</span>
-
-            <span class="text-[11px] text-slate-500 block mt-1">
-
-                <span class="lang-en">Fairly split into 3 payments</span>
-
-                <span class="lang-ar hidden">تقسيم عادل على 3 دفعات</span>
-
-            </span>
-
+    <!-- Key Project Metrics Bar -->
+    <section id="stats" class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-8">
+        <div class="glass-box p-5 rounded-2xl flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl flex-shrink-0">
+                <i class="fa-solid fa-hand-holding-dollar"></i>
+            </div>
+            <div>
+                <span class="text-xs text-slate-400 block font-medium">
+                    <span class="lang-en">Total Project Cost</span>
+                    <span class="lang-ar hidden">التكلفة الإجمالية</span>
+                </span>
+                <span class="text-2xl font-black text-white">$3,300 USD</span>
+                <span class="text-[11px] text-purple-300 block font-semibold">3 Equal Milestones ($1,100 / mo)</span>
+            </div>
         </div>
 
-        <div class="glass-box p-5 rounded-2xl text-center border-t-4 border-t-blue-500">
-
-            <span class="text-xs text-slate-400 block mb-1">
-
-                <span class="lang-en">Timeline</span>
-
-                <span class="lang-ar hidden">المدة الزمنية</span>
-
-            </span>
-
-            <span class="text-2xl font-black text-blue-400">
-
-                <span class="lang-en">3 Months</span>
-
-                <span class="lang-ar hidden">3 أشهر</span>
-
-            </span>
-
-            <span class="text-[11px] text-slate-500 block mt-1">
-
-                <span class="lang-en">Phased structured delivery</span>
-
-                <span class="lang-ar hidden">تطوير مجزأ ومنظم</span>
-
-            </span>
-
+        <div class="glass-box p-5 rounded-2xl flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl flex-shrink-0">
+                <i class="fa-solid fa-calendar-check"></i>
+            </div>
+            <div>
+                <span class="text-xs text-slate-400 block font-medium">
+                    <span class="lang-en">Total Duration</span>
+                    <span class="lang-ar hidden">المدة الزمنية الإجمالية</span>
+                </span>
+                <span class="text-2xl font-black text-white">60 Days</span>
+                <span class="text-[11px] text-blue-300 block font-semibold">3 Months / Engineering Milestones</span>
+            </div>
         </div>
 
-        <div class="glass-box p-5 rounded-2xl text-center border-t-4 border-t-purple-500">
-
-            <span class="text-xs text-slate-400 block mb-1">
-
-                <span class="lang-en">App Architecture</span>
-
-                <span class="lang-ar hidden">هندسة التطبيقات</span>
-
-            </span>
-
-            <span class="text-2xl font-black text-purple-400">
-
-                <span class="lang-en">Unified App + 2 Dashboards</span>
-
-                <span class="lang-ar hidden">موبايل موحد + لوحتين</span>
-
-            </span>
-
-            <span class="text-[11px] text-slate-500 block mt-1">
-
-                <span class="lang-en">Smart Dynamic UI</span>
-
-                <span class="lang-ar hidden">تطبيق واحد ذكي بـ Dynamic UI</span>
-
-            </span>
-
+        <div class="glass-box p-5 rounded-2xl flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl flex-shrink-0">
+                <i class="fa-solid fa-users-gear"></i>
+            </div>
+            <div>
+                <span class="text-xs text-slate-400 block font-medium">
+                    <span class="lang-en">System Roles</span>
+                    <span class="lang-ar hidden">أدوار النظام</span>
+                </span>
+                <span class="text-2xl font-black text-white">6 Roles</span>
+                <span class="text-[11px] text-emerald-300 block font-semibold">Strict Segregation of Duties</span>
+            </div>
         </div>
 
-        <div class="glass-box p-5 rounded-2xl text-center border-t-4 border-t-amber-500">
-
-            <span class="text-xs text-slate-400 block mb-1">
-
-                <span class="lang-en">Legal Compliance</span>
-
-                <span class="lang-ar hidden">التوثيق القانوني</span>
-
-            </span>
-
-            <span class="text-2xl font-black text-amber-400">
-
-                <span class="lang-en">E-Signatures</span>
-
-                <span class="lang-ar hidden">عقود إلكترونية</span>
-
-            </span>
-
-            <span class="text-[11px] text-slate-500 block mt-1">
-
-                <span class="lang-en">Certified platform integration</span>
-
-                <span class="lang-ar hidden">ربط مع منصة معتمدة</span>
-
-            </span>
-
+        <div class="glass-box p-5 rounded-2xl flex items-center gap-4">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl flex-shrink-0">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+                <span class="text-xs text-slate-400 block font-medium">
+                    <span class="lang-en">Deliverables</span>
+                    <span class="lang-ar hidden">المخرجات البرمجية</span>
+                </span>
+                <span class="text-2xl font-black text-white">1 App + 2 Web</span>
+                <span class="text-[11px] text-amber-300 block font-semibold">Flutter Mobile + Admin Dashboards</span>
+            </div>
         </div>
-
     </section>
 
-    <!-- VISUAL BLUEPRINT CONTAINER: Roles & Intersections -->
+    <!-- SECTION 1: System Roles & Operational Separation -->
+    <section id="roles" class="max-w-6xl mx-auto my-14">
+        <div class="text-center mb-8">
+            <span class="text-xs font-bold text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full uppercase tracking-wider">Governance & Security</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                <i class="fa-solid fa-users text-blue-500 mr-2 ml-2"></i> 
+                <span class="lang-en">System Roles & Operational Separation</span>
+                <span class="lang-ar hidden">الأدوار التشغيلية وفصل المسؤوليات في النظام</span>
+            </h2>
+            <p class="text-slate-400 text-sm mt-2 max-w-2xl mx-auto">
+                <span class="lang-en">Strict separation of duties between daily operational management and independent financial auditing, guaranteeing complete ledger transparency and zero data overlap.</span>
+                <span class="lang-ar hidden">فصل دقيق للمسؤوليات والرقابة المالية لمنع تضارب المصالح، حيث يمتلك كل دور واجهته وصلاحياته المحددة دون أي تداخل.</span>
+            </p>
+        </div>
 
-    <main id="blueprint" class="max-w-6xl mx-auto glass-box rounded-3xl p-6 md:p-10 my-10 relative overflow-hidden shadow-2xl border border-slate-700">
-
-        <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-800">
-
-            <div>
-
-                <h2 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-
-                    <i class="fa-solid fa-network-wired text-blue-500"></i> 
-
-                    <span class="lang-en">Live Matrix: Roles & Intersections</span>
-
-                    <span class="lang-ar hidden">مصفوفة الأدوار والتقاطعات الحية</span>
-
-                </h2>
-
-                <p class="text-xs text-slate-400 mt-1">
-
-                    <span class="lang-en">Trace how each user intersects with others in the platform</span>
-
-                    <span class="lang-ar hidden">تتبع كيف يتقاطع كل مستخدم مع الآخر في المنصة لحظياً</span>
-
-                </p>
-
+        <!-- 6 Roles Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- 1. Super Admin -->
+            <div class="glass-box p-6 rounded-2xl pulse-card border-t-4 border-t-purple-500 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full font-bold">Web Dashboard</span>
+                        <i class="fa-solid fa-user-shield text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">
+                        <span class="lang-en">1. Super Admin (Platform Owner)</span>
+                        <span class="lang-ar hidden">1. مالك المنصة (Super Admin)</span>
+                    </h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                        <span class="lang-en">Central control for real estate company subscriptions (SaaS Billing), tenant data isolation (Multi-Tenancy), global gateway configurations, security audits, and system-wide logging.</span>
+                        <span class="lang-ar hidden">التحكم المركزي في اشتراكات الشركات وباقات التسعير، متابعة أداء الخوادم، وعزل بيانات الشركات (Multi-Tenancy) على مستوى قاعدة البيانات مع سجل تدقيق أمني شامل.</span>
+                    </p>
+                    <div class="mt-4 text-xs bg-slate-900/80 p-3 rounded-xl border border-purple-500/20 text-slate-300">
+                        <strong class="text-purple-400 block mb-1">
+                            <span class="lang-en">Financial Boundary:</span>
+                            <span class="lang-ar hidden">الحدود المالية:</span>
+                        </strong>
+                        <span class="lang-en">Never accesses private property funds or company client accounts. Collects only monthly/annual SaaS software license fees and standard payment gateway processing margins.</span>
+                        <span class="lang-ar hidden">لا يتدخل مطلقاً في المعاملات المالية الداخلية أو أرباح الملاك؛ يقتصر تحصيله على رسوم ترخيص الـ SaaS وعمولات المعالجة السحابية المحددة.</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 text-xs text-purple-400 font-semibold flex justify-between">
+                    <span>Web Platform</span>
+                    <span>Multi-Tenancy Core</span>
+                </div>
             </div>
 
-            <span class="bg-blue-500/20 text-blue-300 text-xs px-3 py-1.5 rounded-lg border border-blue-500/30 font-semibold hidden md:inline-block animate-pulse">
+            <!-- 2. Property Manager -->
+            <div class="glass-box p-6 rounded-2xl pulse-card border-t-4 border-t-blue-500 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full font-bold">90% Web + Mobile</span>
+                        <i class="fa-solid fa-building-user text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">
+                        <span class="lang-en">2. Property Manager / Admin</span>
+                        <span class="lang-ar hidden">2. مدير الأملاك والعقارات (Property Manager)</span>
+                    </h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                        <span class="lang-en">Creates buildings, units, and lease agreements. Oversees collection alerts, coordinates maintenance requests, assigns contractors, and conducts digital unit handovers.</span>
+                        <span class="lang-ar hidden">إدخال المباني والوحدات، صياغة عقود الإيجار، متابعة التحصيل، وإسناد أوامر الصيانة لمقاولي الميدان ومتابعة تقارير الإشغال اليومية.</span>
+                    </p>
+                    <div class="mt-4 text-xs bg-slate-900/80 p-3 rounded-xl border border-blue-500/20 text-slate-300">
+                        <strong class="text-blue-400 block mb-1">
+                            <span class="lang-en">Spending Approval Threshold:</span>
+                            <span class="lang-ar hidden">سقف الاعتماد المالي:</span>
+                        </strong>
+                        <span class="lang-en">Directly authorizes minor repairs up to the contractual spending limit (&le; 500 AED). Invoices exceeding this threshold automatically escalate to Landlord for mobile sign-off.</span>
+                        <span class="lang-ar hidden">يعتمد أوامر الصيانة الفورية حتى السقف المتفق عليه في عقد الإدارة (&le; 500 درهم)، وما تجاوز ذلك يُحال آلياً إلى المالك للموافقة عبر الموبايل.</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 text-xs text-blue-400 font-semibold flex justify-between">
+                    <span>Web & Mobile</span>
+                    <span>Daily Operations</span>
+                </div>
+            </div>
 
-                Interactive Blueprint
+            <!-- 3. Accountant & Finance -->
+            <div class="glass-box p-6 rounded-2xl pulse-card border-t-4 border-t-emerald-500 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full font-bold">Web Dashboard</span>
+                        <i class="fa-solid fa-calculator text-2xl text-emerald-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">
+                        <span class="lang-en">3. Finance & Accounting Staff</span>
+                        <span class="lang-ar hidden">3. الإدارة المالية والمحاسب (Finance)</span>
+                    </h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                        <span class="lang-en">Enforces Segregation of Duties. Audits online payment receipts, reconciles bank statements & cheque deposits, manages bounced cheques, and releases approved contractor payments.</span>
+                        <span class="lang-ar hidden">دور مستقل للرقابة المالية وفصل الصلاحيات (Segregation of Duties). يطابق الدفعات البنكية والشيكات، يدير الشيكات المرتجعة، ويصرف فواتير المقاولين المعتمدة.</span>
+                    </p>
+                    <div class="mt-4 text-xs bg-slate-900/80 p-3 rounded-xl border border-emerald-500/20 text-slate-300">
+                        <strong class="text-emerald-400 block mb-1">
+                            <span class="lang-en">Owner Disbursement Engine:</span>
+                            <span class="lang-ar hidden">توزيع أرباح الملاك:</span>
+                        </strong>
+                        <span class="lang-en">Deducts management commission and verified maintenance expenses in the property ledger, then generates 1-click net rental payouts with automated certified statements.</span>
+                        <span class="lang-ar hidden">يخصم المصروفات التشغيلية المعتمدة وعمولة إدارة الأملاك في دفتر أستاذ العقار، ثم يصرف صافي أرباح المالك مع كشف حساب مالي تفصيلي فوري.</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 text-xs text-emerald-400 font-semibold flex justify-between">
+                    <span>Web ERP & Accounting</span>
+                    <span>Audit & Compliance</span>
+                </div>
+            </div>
 
-            </span>
+            <!-- 4. Landlord -->
+            <div class="glass-box p-6 rounded-2xl pulse-card border-t-4 border-t-teal-500 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-teal-500/20 text-teal-300 px-3 py-1 rounded-full font-bold">Unified Mobile App</span>
+                        <i class="fa-solid fa-house-chimney-user text-2xl text-teal-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">
+                        <span class="lang-en">4. Property Owner (Landlord)</span>
+                        <span class="lang-ar hidden">4. مالك العقار (Landlord)</span>
+                    </h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                        <span class="lang-en">Tracks portfolio occupancy and net rental yields from their smartphone, downloads tax-compliant financial statements, and reviews lease renewals and tenant payment status in real-time.</span>
+                        <span class="lang-ar hidden">متابعة فورية لمحفظة العقارات، نسب الإشغال، وصافي العائد الإيجاري من الهاتف، مع تحميل التقارير الضريبية وتفاصيل سداد المستأجرين بضغطة زر.</span>
+                    </p>
+                    <div class="mt-4 text-xs bg-slate-900/80 p-3 rounded-xl border border-teal-500/20 text-slate-300">
+                        <strong class="text-teal-400 block mb-1">
+                            <span class="lang-en">1-Tap Decision Making:</span>
+                            <span class="lang-ar hidden">اعتماد الصيانة الكبرى بضغطة واحدة:</span>
+                        </strong>
+                        <span class="lang-en">Receives instant notifications containing damage photos and contractor quotes for expenses exceeding 500 AED, allowing 1-tap approval or rejection from mobile.</span>
+                        <span class="lang-ar hidden">يصل للمالك إشعار مباشر بصور العطل وعروض أسعار المقاولين للبلاغات التي تتجاوز السقف المحدد للموافقة أو الرفض الفوري دون مراجعة ورقية.</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 text-xs text-teal-400 font-semibold flex justify-between">
+                    <span>Mobile App</span>
+                    <span>Net ROI & Statements</span>
+                </div>
+            </div>
+
+            <!-- 5. Tenant -->
+            <div class="glass-box p-6 rounded-2xl pulse-card border-t-4 border-t-amber-500 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-amber-500/20 text-amber-300 px-3 py-1 rounded-full font-bold">Unified Mobile App</span>
+                        <i class="fa-solid fa-key text-2xl text-amber-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">
+                        <span class="lang-en">5. Tenant</span>
+                        <span class="lang-ar hidden">5. المستأجر (Tenant)</span>
+                    </h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                        <span class="lang-en">Reviews active lease terms, pays rent online via debit/credit card or uploads cheque slips, signs contracts digitally, and receives automated due-date reminders via WhatsApp and App.</span>
+                        <span class="lang-ar hidden">عرض تفاصيل العقد، سداد الإيجار أونلاين بالبطاقات أو رفع إيصالات الشيكات، توقيع العقد إلكترونياً، واستقبال تنبيهات الاستحقاق المؤتمتة عبر الواتساب والموبايل.</span>
+                    </p>
+                    <div class="mt-4 text-xs bg-slate-900/80 p-3 rounded-xl border border-amber-500/20 text-slate-300">
+                        <strong class="text-amber-400 block mb-1">
+                            <span class="lang-en">Smart Camera Maintenance:</span>
+                            <span class="lang-ar hidden">بلاغات الصيانة بالكاميرا:</span>
+                        </strong>
+                        <span class="lang-en">Submits tickets with photos and videos, chooses preferred technician visit time windows, tracks visit status, and rates completed work upon sign-off.</span>
+                        <span class="lang-ar hidden">يرفع بلاغات الصيانة بالصور والفيديو مع تحديد موعد الزيارة المفضل، ويتابع وصول الفني ويؤكد جودة التنفيذ ويقيم الخدمة إلكترونياً.</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 text-xs text-amber-400 font-semibold flex justify-between">
+                    <span>Mobile App</span>
+                    <span>Online Rent & Tickets</span>
+                </div>
+            </div>
+
+            <!-- 6. Maintenance Contractor -->
+            <div class="glass-box p-6 rounded-2xl pulse-card border-t-4 border-t-rose-500 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-rose-500/20 text-rose-300 px-3 py-1 rounded-full font-bold">Unified Mobile App</span>
+                        <i class="fa-solid fa-wrench text-2xl text-rose-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">
+                        <span class="lang-en">6. Contractor & Field Technician</span>
+                        <span class="lang-ar hidden">6. مقاول الصيانة والفني الميداني</span>
+                    </h3>
+                    <p class="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed">
+                        <span class="lang-en">Receives assigned work orders on mobile, conducts site inspections, submits itemized quotation bids, documents completion with before/after photos, and submits invoices for settlement.</span>
+                        <span class="lang-ar hidden">استلام أوامر العمل الميدانية على التطبيق، معاينة الموقع، تقديم عروض الأسعار المفصلة، توثيق الإصلاح بالصور قبل وبعد، وتقديم الفاتورة للصرف.</span>
+                    </p>
+                    <div class="mt-4 text-xs bg-slate-900/80 p-3 rounded-xl border border-rose-500/20 text-slate-300">
+                        <strong class="text-rose-400 block mb-1">
+                            <span class="lang-en">Prompt Payout Cycle:</span>
+                            <span class="lang-ar hidden">سرعة تسوية المستحقات:</span>
+                        </strong>
+                        <span class="lang-en">Digital tenant sign-off instantly routes invoices to accounting for prompt payment release, eliminating invoice disputes and payment delays.</span>
+                        <span class="lang-ar hidden">تأكيد المستأجر الرقمي لجودة الإصلاح يحيل الفاتورة مباشرة للمحاسب لصرف المستحقات بسرعة دون نزاعات ورقية أو تأخير.</span>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 text-xs text-rose-400 font-semibold flex justify-between">
+                    <span>Mobile App</span>
+                    <span>Bidding & Work Proof</span>
+                </div>
+            </div>
 
         </div>
 
-        <!-- Visual Grid of Core Roles -->
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative z-10">
-
-            <!-- Super Admin -->
-
-            <div class="glass-box p-5 rounded-2xl pulse-card border-t-4 border-t-indigo-500">
-
-                <div class="flex items-center justify-between mb-3">
-
-                    <span class="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded font-bold">Web Dashboard</span>
-
-                    <i class="fa-solid fa-user-shield text-indigo-400 text-2xl"></i>
-
-                </div>
-
-                <h3 class="font-bold text-white text-base">
-
-                    <span class="lang-en">Super Admin</span>
-
-                    <span class="lang-ar hidden">مدير المنصة (Super Admin)</span>
-
+        <!-- RACI Governance & Cross-Module Touchpoint Matrix -->
+        <div class="mt-10 glass-box p-6 rounded-2xl overflow-x-auto">
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-table-cells text-blue-400"></i>
+                    <span class="lang-en">Governance & Responsibilities Matrix (RACI Matrix)</span>
+                    <span class="lang-ar hidden">مصفوفة الحوكمة والمسؤوليات البرمجية (RACI Matrix)</span>
                 </h3>
-
-                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-
-                    <span class="lang-en">Controls SaaS billing, data isolation (Multi-Tenancy), and global platform monitoring.</span>
-
-                    <span class="lang-ar hidden">يتحكم بالاشتراكات، عزل بيانات الشركات (Multi-Tenancy)، ومراقبة النظام ككل.</span>
-
-                </p>
-
-                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-indigo-300 font-medium">
-
-                    <i class="fa-solid fa-link ml-1 mr-1"></i> 
-
-                    <span class="lang-en">Intersects: All Companies (Backend only)</span>
-
-                    <span class="lang-ar hidden">يتقاطع مع: جميع الشركات والباك إند.</span>
-
+                <div class="hidden sm:flex items-center gap-3 text-[11px] text-slate-400">
+                    <span><strong class="text-emerald-400">R:</strong> Responsible</span>
+                    <span><strong class="text-blue-400">A:</strong> Accountable</span>
+                    <span><strong class="text-amber-400">C:</strong> Consulted</span>
+                    <span><strong class="text-purple-400">I:</strong> Informed</span>
                 </div>
-
             </div>
 
-            <!-- Property Manager / Accountant -->
+            <table class="w-full text-xs text-left rtl:text-right border-collapse">
+                <thead>
+                    <tr class="border-b border-slate-700 text-slate-400">
+                        <th class="py-3 px-3">Role</th>
+                        <th class="py-3 px-3">Interface</th>
+                        <th class="py-3 px-3">Primary Operational Scope</th>
+                        <th class="py-3 px-3">Cross-Module Integrations & Touchpoints</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-800/80 text-slate-300">
+                    <tr class="hover:bg-slate-800/40">
+                        <td class="py-3 px-3 font-bold text-purple-400">Super Admin</td>
+                        <td class="py-3 px-3"><span class="bg-purple-500/10 text-purple-300 px-2 py-0.5 rounded border border-purple-500/30">Web</span></td>
+                        <td class="py-3 px-3">Company accounts, subscription tiers, multi-tenancy quotas</td>
+                        <td class="py-3 px-3">Enforces DB schema isolation; configures global SMS/WhatsApp and payment gateways</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/40">
+                        <td class="py-3 px-3 font-bold text-blue-400">Property Manager</td>
+                        <td class="py-3 px-3"><span class="bg-blue-500/10 text-blue-300 px-2 py-0.5 rounded border border-blue-500/30">Web + Mobile</span></td>
+                        <td class="py-3 px-3">Lease generation, building setup, contractor dispatch, minor repairs (&le; 500 AED)</td>
+                        <td class="py-3 px-3">Coordinates Tenant tickets with Contractors; escalates high quotes to Landlord; forwards receipts to Accounting</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/40">
+                        <td class="py-3 px-3 font-bold text-emerald-400">Finance & Accountant</td>
+                        <td class="py-3 px-3"><span class="bg-emerald-500/10 text-emerald-300 px-2 py-0.5 rounded border border-emerald-500/30">Web ERP</span></td>
+                        <td class="py-3 px-3">Bank reconciliation, bounced cheque tracking, contractor payout, VAT reports</td>
+                        <td class="py-3 px-3">Audits property ledger; disburses net income to Landlords; deducts management commissions</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/40">
+                        <td class="py-3 px-3 font-bold text-teal-400">Property Owner (Landlord)</td>
+                        <td class="py-3 px-3"><span class="bg-teal-500/10 text-teal-300 px-2 py-0.5 rounded border border-teal-500/30">Mobile</span></td>
+                        <td class="py-3 px-3">Track occupancy, review rental income, approve major maintenance (&gt; 500 AED)</td>
+                        <td class="py-3 px-3">1-tap quote approval prompts; receives automated monthly net payout and certified PDF ledger</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/40">
+                        <td class="py-3 px-3 font-bold text-amber-400">Tenant</td>
+                        <td class="py-3 px-3"><span class="bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded border border-amber-500/30">Mobile</span></td>
+                        <td class="py-3 px-3">Online card rent payment, camera maintenance reports, contract e-signing</td>
+                        <td class="py-3 px-3">Automated payment reminders; tracks technician visit; signs off on completed repairs</td>
+                    </tr>
+                    <tr class="hover:bg-slate-800/40">
+                        <td class="py-3 px-3 font-bold text-rose-400">Contractor & Tech</td>
+                        <td class="py-3 px-3"><span class="bg-rose-500/10 text-rose-300 px-2 py-0.5 rounded border border-rose-500/30">Mobile</span></td>
+                        <td class="py-3 px-3">Receive work orders, submit itemized quotes, upload before/after photos</td>
+                        <td class="py-3 px-3">Digital customer sign-off automatically submits invoice to accounting ledger for payout</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-            <div class="glass-box p-5 rounded-2xl pulse-card border-t-4 border-t-blue-500">
-
-                <div class="flex items-center justify-between mb-3">
-
-                    <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded font-bold">Web + Mobile</span>
-
-                    <i class="fa-solid fa-building-user text-blue-400 text-2xl"></i>
-
-                </div>
-
-                <h3 class="font-bold text-white text-base">
-
-                    <span class="lang-en">Manager & Accountant</span>
-
-                    <span class="lang-ar hidden">مدير العقارات والمحاسب</span>
-
-                </h3>
-
-                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-
-                    <span class="lang-en">The operations hub. Creates leases, reconciles accounts, and dispatches maintenance.</span>
-
-                    <span class="lang-ar hidden">محور العمليات؛ يدخل العقارات، يبرم العقود، يطابق الحسابات، ويدير الصيانة.</span>
-
-                </p>
-
-                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-blue-300 font-medium">
-
-                    <i class="fa-solid fa-link ml-1 mr-1"></i> 
-
-                    <span class="lang-en">Intersects: Landlord, Tenant, Contractor</span>
-
-                    <span class="lang-ar hidden">يتقاطع مع: المالك، المستأجر، والمقاول.</span>
-
-                </div>
-
-            </div>
-
-            <!-- Landlord -->
-
-            <div class="glass-box p-5 rounded-2xl pulse-card border-t-4 border-t-emerald-500">
-
-                <div class="flex items-center justify-between mb-3">
-
-                    <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-bold">Mobile App</span>
-
-                    <i class="fa-solid fa-house-chimney-user text-emerald-400 text-2xl"></i>
-
-                </div>
-
-                <h3 class="font-bold text-white text-base">
-
-                    <span class="lang-en">Landlord (Owner)</span>
-
-                    <span class="lang-ar hidden">مالك العقار (Landlord)</span>
-
-                </h3>
-
-                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-
-                    <span class="lang-en">Tracks net ROI, receives automated payouts, and approves major maintenance quotes.</span>
-
-                    <span class="lang-ar hidden">يتابع الأرباح، يستلم التحويلات، ويعتمد مصروفات الصيانة الكبيرة بضغطة زر.</span>
-
-                </p>
-
-                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-300 font-medium">
-
-                    <i class="fa-solid fa-link ml-1 mr-1"></i> 
-
-                    <span class="lang-en">Intersects: Manager & Accountant</span>
-
-                    <span class="lang-ar hidden">يتقاطع مع: مدير العقارات والمحاسب فقط.</span>
-
-                </div>
-
-            </div>
-
-            <!-- Tenant -->
-
-            <div class="glass-box p-5 rounded-2xl pulse-card border-t-4 border-t-amber-500">
-
-                <div class="flex items-center justify-between mb-3">
-
-                    <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold">Mobile App</span>
-
-                    <i class="fa-solid fa-key text-amber-400 text-2xl"></i>
-
-                </div>
-
-                <h3 class="font-bold text-white text-base">
-
-                    <span class="lang-en">Tenant</span>
-
-                    <span class="lang-ar hidden">المستأجر (Tenant)</span>
-
-                </h3>
-
-                <p class="text-xs text-slate-400 mt-2 leading-relaxed">
-
-                    <span class="lang-en">Pays rent online, e-signs contracts, and submits photo/video maintenance tickets.</span>
-
-                    <span class="lang-ar hidden">يدفع الإيجارات أونلاين، يوقع العقد إلكترونياً، ويرفع بلاغات الصيانة بالصور.</span>
-
-                </p>
-
-                <div class="mt-4 pt-3 border-t border-slate-800 text-[11px] text-amber-300 font-medium">
-
-                    <i class="fa-solid fa-link ml-1 mr-1"></i> 
-
-                    <span class="lang-en">Intersects: Manager & Contractor</span>
-
-                    <span class="lang-ar hidden">يتقاطع مع: مدير العقارات ومقاول الصيانة.</span>
-
-                </div>
-
-            </div>
-
+    <!-- SECTION 2: Detailed Operational & Financial Flows -->
+    <section id="flows" class="max-w-6xl mx-auto my-14 glass-box p-6 md:p-10 rounded-3xl">
+        <div class="text-center mb-10">
+            <span class="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full uppercase tracking-wider">Money & Operational Workflows</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                <i class="fa-solid fa-diagram-project text-emerald-400 mr-2 ml-2"></i> 
+                <span class="lang-en">Operational & Financial Flows</span>
+                <span class="lang-ar hidden">مخطط تدفق العمليات والتسويات المالية الدائرية</span>
+            </h2>
+            <p class="text-slate-400 text-sm mt-2 max-w-2xl mx-auto">
+                <span class="lang-en">How transactions, approvals, and liquidity flow securely with zero manual friction and strict accounting auditability.</span>
+                <span class="lang-ar hidden">دورة متكاملة لحركة الأموال والموافقات من المستأجر وحتى التوزيع النهائي لضمان عدم ضياع أي مستحقات.</span>
+            </p>
         </div>
 
-        <!-- CIRCULAR MONEY FLOW INSIDE BLUEPRINT -->
-
-        <div id="flows" class="mt-12 pt-8 border-t border-slate-800">
-
-            <h3 class="text-lg font-bold text-white mb-8 text-center flex items-center justify-center gap-2">
-
-                <i class="fa-solid fa-rotate text-emerald-400"></i> 
-
-                <span class="lang-en">The Circular Money & Data Flow Loop</span>
-
-                <span class="lang-ar hidden">حلقة تدفق الأموال والمعاملات التشغيلية الدائرية</span>
-
+        <!-- Visual Circular Money Flow Diagram -->
+        <div class="mb-12 bg-slate-900/90 border border-slate-700/80 p-6 rounded-2xl">
+            <h3 class="text-sm font-bold text-white mb-4 flex items-center justify-between">
+                <span class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-nodes text-emerald-400"></i>
+                    <span class="lang-en">Circular Financial Flow (Collection &rarr; Escrow &rarr; Deductions &rarr; Payout)</span>
+                    <span class="lang-ar hidden">دورة التدفق المالي الدائرية (تحصيل &larr; حساب وسيط &larr; استقطاعات &larr; صرف)</span>
+                </span>
+                <span class="text-[11px] bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full font-semibold">Automated Ledger</span>
             </h3>
 
-            <div class="relative flex flex-col md:flex-row items-center justify-between gap-6 max-w-4xl mx-auto">
-
-                <!-- Point 1 -->
-
-                <div class="glass-box p-5 rounded-full w-40 h-40 flex flex-col items-center justify-center text-center border-2 border-amber-500/50 z-10 relative group">
-
-                    <div class="absolute inset-0 bg-amber-500/10 rounded-full group-hover:bg-amber-500/20 transition"></div>
-
-                    <i class="fa-solid fa-wallet text-amber-400 text-2xl mb-2 relative z-10"></i>
-
-                    <h4 class="font-bold text-white text-sm relative z-10">
-
-                        <span class="lang-en">1. Rent Paid</span>
-
-                        <span class="lang-ar hidden">1. دفع المستأجر</span>
-
-                    </h4>
-
-                    <span class="text-[10px] text-slate-400 mt-1 relative z-10">Online / Cheque</span>
-
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-amber-500/30">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold">
+                        1
+                    </div>
+                    <strong class="text-white text-xs block">Tenant Pays Rent</strong>
+                    <p class="text-[11px] text-slate-400 mt-1">Online card gateway or verified bank cheque.</p>
                 </div>
 
-                <!-- Animated Arrow 1 -->
-
-                <div class="hidden md:flex flex-col items-center justify-center flex-1 -mx-8 z-0">
-
-                    <span class="text-[10px] text-emerald-400 mb-1">Payment Data</span>
-
-                    <svg class="w-full h-8" viewBox="0 0 100 20">
-
-                        <line x1="0" y1="10" x2="100" y2="10" stroke="#10b981" stroke-width="2" class="flow-line" />
-
-                        <polygon points="100,10 90,5 90,15" fill="#10b981" />
-
-                    </svg>
-
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-blue-500/30">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">
+                        2
+                    </div>
+                    <strong class="text-white text-xs block">Escrow & Reconciliation</strong>
+                    <p class="text-[11px] text-slate-400 mt-1">Funds held in property sub-ledger; accountant reconciles.</p>
                 </div>
 
-                <!-- Point 2 -->
-
-                <div class="glass-box p-5 rounded-full w-40 h-40 flex flex-col items-center justify-center text-center border-2 border-blue-500/50 z-10 relative group">
-
-                    <div class="absolute inset-0 bg-blue-500/10 rounded-full group-hover:bg-blue-500/20 transition"></div>
-
-                    <i class="fa-solid fa-calculator text-blue-400 text-2xl mb-2 relative z-10"></i>
-
-                    <h4 class="font-bold text-white text-sm relative z-10">
-
-                        <span class="lang-en">2. Reconciliation</span>
-
-                        <span class="lang-ar hidden">2. تسوية ومطابقة</span>
-
-                    </h4>
-
-                    <span class="text-[10px] text-slate-400 mt-1 relative z-10 leading-tight">Fees Deducted</span>
-
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-purple-500/30">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold">
+                        3
+                    </div>
+                    <strong class="text-white text-xs block">Operational Deductions</strong>
+                    <p class="text-[11px] text-slate-400 mt-1">Company management fees + approved contractor maintenance.</p>
                 </div>
 
-                <!-- Animated Arrow 2 -->
-
-                <div class="hidden md:flex flex-col items-center justify-center flex-1 -mx-8 z-0">
-
-                    <span class="text-[10px] text-emerald-400 mb-1">Net Income</span>
-
-                    <svg class="w-full h-8" viewBox="0 0 100 20">
-
-                        <line x1="0" y1="10" x2="100" y2="10" stroke="#10b981" stroke-width="2" class="flow-line" />
-
-                        <polygon points="100,10 90,5 90,15" fill="#10b981" />
-
-                    </svg>
-
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-emerald-500/30">
+                    <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+                        4
+                    </div>
+                    <strong class="text-white text-xs block">Net Landlord Transfer</strong>
+                    <p class="text-[11px] text-slate-400 mt-1">Instant net payout transfer with digital statement download.</p>
                 </div>
-
-                <!-- Point 3 -->
-
-                <div class="glass-box p-5 rounded-full w-40 h-40 flex flex-col items-center justify-center text-center border-2 border-emerald-500/50 z-10 relative group">
-
-                    <div class="absolute inset-0 bg-emerald-500/10 rounded-full group-hover:bg-emerald-500/20 transition"></div>
-
-                    <i class="fa-solid fa-building-circle-check text-emerald-400 text-2xl mb-2 relative z-10"></i>
-
-                    <h4 class="font-bold text-white text-sm relative z-10">
-
-                        <span class="lang-en">3. Owner Payout</span>
-
-                        <span class="lang-ar hidden">3. تحويل للأرباح</span>
-
-                    </h4>
-
-                    <span class="text-[10px] text-slate-400 mt-1 relative z-10">Direct Bank + PDF</span>
-
-                </div>
-
             </div>
-
         </div>
 
-    </main>
+        <!-- Flow A: Rent Collection & Disbursement Flow -->
+        <div class="mb-12">
+            <h3 class="text-base sm:text-lg font-bold text-blue-400 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                <span class="lang-en">A. Rent Collection & Owner Payout Flow (5 Steps)</span>
+                <span class="lang-ar hidden">أ. مسار تحصيل الإيجار وصرف أرباح الملاك (5 خطوات متسلسلة)</span>
+            </h3>
 
-    <!-- App Architecture Section (Restored & Styled) -->
-
-    <section id="architecture" class="max-w-6xl mx-auto my-14">
-
-        <h2 class="text-2xl sm:text-3xl font-bold text-center text-white mb-2">
-
-            <i class="fa-solid fa-layer-group text-purple-400 mr-2 ml-2"></i> 
-
-            <span class="lang-en">Architecture: 1 Unified App vs Web Dashboards</span>
-
-            <span class="lang-ar hidden">معمارية التطبيق: تطبيق موحد أم منصات متعددة؟</span>
-
-        </h2>
-
-        <p class="text-center text-slate-400 text-sm mb-8 max-w-xl mx-auto">
-
-            <span class="lang-en">Why a single Unified Mobile App is technically and commercially superior.</span>
-
-            <span class="lang-ar hidden">توزيع الوظائف والبيئات البرمجية حسب الأنسب لكل مستخدم لتقليل التكلفة ورفع الكفاءة.</span>
-
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-
-            <div class="glass-box p-6 rounded-2xl border-t-4 border-t-blue-500 flex flex-col justify-between pulse-card">
-
-                <div>
-
-                    <div class="flex items-center justify-between mb-4">
-
-                        <span class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full font-bold">Unified Mobile App (Flutter)</span>
-
-                        <i class="fa-solid fa-mobile-screen-button text-2xl text-blue-400"></i>
-
+            <div class="relative flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Step 1: Tenant -->
+                <div class="flex flex-col items-center text-center z-10 w-full md:w-auto">
+                    <div class="w-16 h-16 p-4 bg-amber-500/20 border-2 border-amber-500 rounded-full flex items-center justify-center text-amber-400 text-2xl mb-2 shadow-lg shadow-amber-500/10">
+                        <i class="fa-solid fa-wallet"></i>
                     </div>
-
-                    <h3 class="text-lg font-bold text-white mb-3">
-
-                        <span class="lang-en">Mobile-First Functions (Tenants, Landlords, Contractors)</span>
-
-                        <span class="lang-ar hidden">وظائف تطبيق الموبايل (المستأجر، المالك، المقاول)</span>
-
-                    </h3>
-
-                    <ul class="text-xs text-slate-300 space-y-3 leading-relaxed">
-
-                        <li><i class="fa-solid fa-camera text-blue-400 mr-2 ml-1"></i> <strong>Direct Camera Capture:</strong> Instant photo/video for tickets & move-ins.</li>
-
-                        <li><i class="fa-solid fa-bell text-blue-400 mr-2 ml-1"></i> <strong>Push Notifications:</strong> Real-time alerts and approval prompts.</li>
-
-                        <li><i class="fa-regular fa-credit-card text-blue-400 mr-2 ml-1"></i> <strong>Online Checkout:</strong> 1-click rent payments via saved cards.</li>
-
-                        <li><i class="fa-solid fa-repeat text-blue-400 mr-2 ml-1"></i> <strong>Seamless Role Switching:</strong> Switch between landlord/tenant views easily.</li>
-
-                    </ul>
-
+                    <h4 class="font-bold text-white text-sm">
+                        <span class="lang-en">1. Tenant Payment</span>
+                        <span class="lang-ar hidden">1. سداد المستأجر</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 max-w-[150px] mt-1">
+                        <span class="lang-en">Card online payment or uploads cheque slip</span>
+                        <span class="lang-ar hidden">دفع أونلاين بالبطاقة أو رفع صورة الشيك</span>
+                    </p>
                 </div>
 
-            </div>
-
-            <div class="glass-box p-6 rounded-2xl border-t-4 border-t-purple-500 flex flex-col justify-between pulse-card">
-
-                <div>
-
-                    <div class="flex items-center justify-between mb-4">
-
-                        <span class="text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full font-bold">Web Dashboards</span>
-
-                        <i class="fa-solid fa-display text-2xl text-purple-400"></i>
-
-                    </div>
-
-                    <h3 class="text-lg font-bold text-white mb-3">
-
-                        <span class="lang-en">Web-First Functions (Managers & Accountants)</span>
-
-                        <span class="lang-ar hidden">وظائف لوحات التحكم (مدير العقار والمحاسب)</span>
-
-                    </h3>
-
-                    <ul class="text-xs text-slate-300 space-y-3 leading-relaxed">
-
-                        <li><i class="fa-solid fa-database text-purple-400 mr-2 ml-1"></i> <strong>Bulk Asset Entry:</strong> Adding portfolios, units, and complex leases.</li>
-
-                        <li><i class="fa-solid fa-file-invoice-dollar text-purple-400 mr-2 ml-1"></i> <strong>Financial Reports:</strong> Exporting detailed ledgers to PDF/Excel.</li>
-
-                        <li><i class="fa-solid fa-money-check-dollar text-purple-400 mr-2 ml-1"></i> <strong>Bank Reconciliation:</strong> Clearing cheques & tracking returns.</li>
-
-                        <li><i class="fa-solid fa-sliders text-purple-400 mr-2 ml-1"></i> <strong>SaaS Management:</strong> Managing company plans and RBAC.</li>
-
-                    </ul>
-
+                <!-- Arrow 1 -->
+                <div class="hidden md:flex flex-col items-center justify-center flex-1 px-2">
+                    <span class="text-[11px] text-emerald-400 font-semibold mb-1">
+                        <span class="lang-en">Auto-Alert (30/15/7 Days)</span>
+                        <span class="lang-ar hidden">تنبيهات تلقائية (30، 15، 7 أيام)</span>
+                    </span>
+                    <svg class="w-full h-8" viewBox="0 0 100 20">
+                        <line x1="0" y1="10" x2="100" y2="10" stroke="#10b981" stroke-width="3" class="flow-line" />
+                    </svg>
                 </div>
 
-            </div>
+                <!-- Step 2: Manager / Accountant -->
+                <div class="flex flex-col items-center text-center z-10 w-full md:w-auto">
+                    <div class="w-16 h-16 p-4 bg-blue-500/20 border-2 border-blue-500 rounded-full flex items-center justify-center text-blue-400 text-2xl mb-2 shadow-lg shadow-blue-500/10">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-sm">
+                        <span class="lang-en">2. Reconciliation & Audit</span>
+                        <span class="lang-ar hidden">2. المطابقة المحاسبية</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 max-w-[150px] mt-1">
+                        <span class="lang-en">Audits deposit & deducts management fees</span>
+                        <span class="lang-ar hidden">يطابق الدفعة ويخصم عمولة الإدارة والصيانة</span>
+                    </p>
+                </div>
 
+                <!-- Arrow 2 -->
+                <div class="hidden md:flex flex-col items-center justify-center flex-1 px-2">
+                    <span class="text-[11px] text-emerald-400 font-semibold mb-1">
+                        <span class="lang-en">Property Ledger Update</span>
+                        <span class="lang-ar hidden">تحديث دفتر أستاذ العقار</span>
+                    </span>
+                    <svg class="w-full h-8" viewBox="0 0 100 20">
+                        <line x1="0" y1="10" x2="100" y2="10" stroke="#10b981" stroke-width="3" class="flow-line" />
+                    </svg>
+                </div>
+
+                <!-- Step 3: Landlord -->
+                <div class="flex flex-col items-center text-center z-10 w-full md:w-auto">
+                    <div class="w-16 h-16 p-4 bg-emerald-500/20 border-2 border-emerald-500 rounded-full flex items-center justify-center text-emerald-400 text-2xl mb-2 shadow-lg shadow-emerald-500/10">
+                        <i class="fa-solid fa-building-circle-check"></i>
+                    </div>
+                    <h4 class="font-bold text-white text-sm">
+                        <span class="lang-en">3. Net Owner Payout</span>
+                        <span class="lang-ar hidden">3. تحويل أرباح المالك</span>
+                    </h4>
+                    <p class="text-[11px] text-slate-400 max-w-[150px] mt-1">
+                        <span class="lang-en">Direct bank transfer + digital statement</span>
+                        <span class="lang-ar hidden">تحويل بنكي فوري مع كشف حساب تفصيلي</span>
+                    </p>
+                </div>
+            </div>
         </div>
 
+        <!-- Flow B: Maintenance Work Order & Spending Threshold -->
+        <div class="pt-8 border-t border-slate-700/60">
+            <h3 class="text-base sm:text-lg font-bold text-emerald-400 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-toolbox"></i>
+                <span class="lang-en">B. Maintenance Work Order & Spending Threshold (7 Steps)</span>
+                <span class="lang-ar hidden">ب. مسار بلاغات الصيانة وقاعدة الاعتماد المالي (7 خطوات)</span>
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <span class="text-blue-400 font-bold block mb-1">1. Ticket Submission</span>
+                    <p class="text-slate-300">Tenant reports fault using camera (photos/video) & preferred visit schedule.</p>
+                </div>
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <span class="text-blue-400 font-bold block mb-1">2. Contractor Dispatch</span>
+                    <p class="text-slate-300">Property Manager reviews ticket & assigns to maintenance contractor for site visit.</p>
+                </div>
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <span class="text-blue-400 font-bold block mb-1">3. Quotation Bidding</span>
+                    <p class="text-slate-300">Contractor inspects site and uploads digital itemized quotation via mobile app.</p>
+                </div>
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-amber-500/40">
+                    <span class="text-amber-400 font-bold block mb-1">4. Approval Threshold</span>
+                    <p class="text-slate-300">
+                        <strong>&le; 500 AED:</strong> Manager approves immediately.<br>
+                        <strong>&gt; 500 AED:</strong> Auto-routes to Landlord phone for 1-tap approval.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs mt-4">
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <span class="text-purple-400 font-bold block mb-1">5. Field Execution</span>
+                    <p class="text-slate-300">Contractor fixes fault and uploads before/after completion photos + invoice.</p>
+                </div>
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <span class="text-purple-400 font-bold block mb-1">6. Tenant Confirmation</span>
+                    <p class="text-slate-300">Tenant receives notification to confirm satisfactory job completion & rates technician.</p>
+                </div>
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <span class="text-purple-400 font-bold block mb-1">7. Accounting Settlement</span>
+                    <p class="text-slate-300">Accountant audits invoice, disburses payment, and books it as property operating expense.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flow C: Security Deposit & Move-In / Move-Out Inspection Loop -->
+        <div class="mt-8 pt-6 border-t border-slate-700/60 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
+            <div class="bg-slate-800/70 p-4 rounded-xl border border-slate-700/70">
+                <div class="flex items-center gap-2 text-amber-400 font-bold mb-1">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                    <span class="lang-en">Digital Move-In Inspection & Deposit Escrow</span>
+                    <span class="lang-ar hidden">فحص استلام الوحدة وحجز التأمين (Move-In)</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed">
+                    <span class="lang-en">Security deposit is securely held in an escrow ledger. Move-in camera inspection documents wall, plumbing, and meter conditions with photo proof.</span>
+                    <span class="lang-ar hidden">تُحجز قيمة التأمين في دفتر حساب الأمانات الخاص بالعقار، وتُسجل حالة الوحدة بالصور عبر الفحص الرقمي في الموبايل لتوثيق الحالة الأصلية.</span>
+                </p>
+            </div>
+
+            <div class="bg-slate-800/70 p-4 rounded-xl border border-slate-700/70">
+                <div class="flex items-center gap-2 text-emerald-400 font-bold mb-1">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span class="lang-en">Move-Out Comparison & Automated Refund</span>
+                    <span class="lang-ar hidden">فحص الإخلاء وتصفية التأمين (Move-Out)</span>
+                </div>
+                <p class="text-slate-400 leading-relaxed">
+                    <span class="lang-en">Upon move-out, system compares exit checklist against initial move-in report. Verified repair costs are deducted for the landlord, and remainder is returned to tenant digitally.</span>
+                    <span class="lang-ar hidden">يُقارن الفحص الجديد بالفحص الموثق عند الاستلام؛ إن وجدت أضرار تُخصم تكلفتها لصيانة العقار، ويُعاد المتبقي للمستأجر إلكترونياً دون نزاعات.</span>
+                </p>
+            </div>
+        </div>
     </section>
 
-    <!-- Phases & Cost Section (Restyled to match Blueprint) -->
+    <!-- SECTION 3: App Architecture & User Onboarding -->
+    <section id="architecture" class="max-w-6xl mx-auto my-14">
+        <div class="text-center mb-8">
+            <span class="text-xs font-bold text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full uppercase tracking-wider">Technology Stack</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                <i class="fa-solid fa-layer-group text-purple-400 mr-2 ml-2"></i> 
+                <span class="lang-en">Architecture: Unified Mobile App vs Web Dashboards</span>
+                <span class="lang-ar hidden">معمارية النظام: تطبيق موبايل موحد أم تطبيقات منفصلة؟</span>
+            </h2>
+            <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">
+                <span class="lang-en">Why a single Unified Mobile App is technically and commercially superior.</span>
+                <span class="lang-ar hidden">توزيع الواجهات البرمجية بين تطبيقات الموبايل ولوحات التحكم السحابية بأعلى كفاءة.</span>
+            </p>
+        </div>
 
-    <section id="phases" class="max-w-6xl mx-auto my-14">
-
-        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-2 text-center">
-
-            <i class="fa-solid fa-chart-pie text-blue-400 mr-2 ml-2"></i> 
-
-            <span class="lang-en">Technical Phases & Cost Breakdown</span>
-
-            <span class="lang-ar hidden">توزيع المراحل البرمجية ونسب التكلفة</span>
-
-        </h3>
-
-        <p class="text-center text-slate-400 text-sm mb-8">
-
-            <span class="lang-en">$3,300 USD logically distributed over 3 months based on engineering effort.</span>
-
-            <span class="lang-ar hidden">$3,300 موزعة بإنصاف على 3 أشهر بناءً على الجهد الهندسي المبذول.</span>
-
-        </p>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-            <!-- Phase 1 -->
-
-            <div class="glass-box p-6 rounded-2xl border-t-4 border-t-blue-500">
-
-                <div class="flex justify-between items-center mb-3">
-
-                    <h4 class="font-bold text-white text-base">Phase 1: Core MVP</h4>
-
-                    <span class="text-blue-400 font-extrabold">$1,100</span>
-
+        <!-- Functional Distribution Table -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="glass-box p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full font-bold">Unified Mobile App (Flutter)</span>
+                        <i class="fa-solid fa-mobile-screen-button text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">
+                        <span class="lang-en">Mobile-First Functions (Tenants, Landlords, Contractors)</span>
+                        <span class="lang-ar hidden">وظائف تطبيق الموبايل (المستأجر، المالك، المقاول)</span>
+                    </h3>
+                    <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                        <li>• <strong>Direct Camera Capture:</strong> Instant photo/video upload for maintenance tickets and move-in/out inspections.</li>
+                        <li>• <strong>Instant Push Notifications:</strong> Real-time due date alerts, approval prompts, and payment receipts.</li>
+                        <li>• <strong>Online Checkout & Cards:</strong> 1-click mobile rental installment payments via saved cards.</li>
+                        <li>• <strong>Owner 1-Tap Approvals:</strong> Fast mobile decision on quotes exceeding spending threshold.</li>
+                        <li>• <strong>Technician Live Tracking:</strong> Field status updates and contractor GPS routing.</li>
+                        <li>• <strong>Seamless Role Switching:</strong> Landlords who also rent other units switch views in 1 tap without two apps.</li>
+                    </ul>
                 </div>
+            </div>
 
-                <p class="text-[11px] sm:text-xs text-slate-400 mb-4 leading-relaxed h-16">
+            <div class="glass-box p-6 rounded-2xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full font-bold">Dual Web Dashboards</span>
+                        <i class="fa-solid fa-display text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">
+                        <span class="lang-en">Web Dashboard-First Functions (Managers & Accountants)</span>
+                        <span class="lang-ar hidden">وظائف لوحات التحكم (مدير العقار والمحاسب والـ Admin)</span>
+                    </h3>
+                    <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+                        <li>• <strong>Bulk Asset Entry:</strong> Adding buildings, towers, hundreds of apartments, and complex lease terms.</li>
+                        <li>• <strong>Extended Financial Reports:</strong> Exporting detailed balance sheets, ledgers, and cashflows to PDF/Excel.</li>
+                        <li>• <strong>Bank Reconciliation & Cheque Audit:</strong> Matching bank statements, clearing cheques, and tracking returns.</li>
+                        <li>• <strong>Multi-Tenancy SaaS Engine:</strong> Managing real estate company plans, licensing, and RBAC permissions.</li>
+                        <li>• <strong>Contract & Notification Templates:</strong> Customizing lease clauses, SMS, and WhatsApp message templates.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                    <span class="lang-en">Multi-Tenancy Setup, Unified App, Leases, Payments & Basic Maintenance.</span>
+        <!-- Onboarding Methods -->
+        <div class="glass-box p-6 rounded-2xl">
+            <h3 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+                <i class="fa-solid fa-user-plus text-amber-400"></i>
+                <span class="lang-en">User Onboarding & Registration Architecture</span>
+                <span class="lang-ar hidden">طرق تسجيل وانضمام المستخدمين (User Onboarding)</span>
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-slate-300">
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <strong class="text-purple-400 block mb-1">1. Dashboard Direct Creation</strong>
+                    <p class="text-slate-400">Company Admins, Accountants, and staff are created directly in the Web Dashboard by the firm owner with granular RBAC permissions.</p>
+                </div>
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <strong class="text-blue-400 block mb-1">2. Magic Link / SMS / WhatsApp Invite</strong>
+                    <p class="text-slate-400">When lease contracts or assets are saved, tenants and landlords receive an automated invitation link with an OTP code linking directly to their contracts.</p>
+                </div>
+                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700">
+                    <strong class="text-emerald-400 block mb-1">3. SaaS Self-Signup</strong>
+                    <p class="text-slate-400">New real estate companies register online via website, choose their plan tier (by managed units), enter company card, and activate workspace instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <span class="lang-ar hidden">التأسيس البرمجي، عزل البيانات (Multi-Tenancy)، الموبايل الموحد، العقود والتحصيل، والصيانة الأساسية.</span>
-
+    <!-- SECTION 4: Certified E-Contract & Digital Signatures -->
+    <section class="max-w-6xl mx-auto my-14 bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/30 p-6 md:p-8 rounded-3xl">
+        <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="text-4xl text-blue-400 bg-blue-500/20 p-5 rounded-2xl flex-shrink-0">
+                <i class="fa-solid fa-file-signature"></i>
+            </div>
+            <div>
+                <h3 class="text-xl font-bold text-white mb-2">
+                    <span class="lang-en">Certified E-Contract & Digital Signature Integration</span>
+                    <span class="lang-ar hidden">التكامل مع منصة معتمدة لإنشاء العقود والتوقيع الإلكتروني</span>
+                </h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    <span class="lang-en">To eliminate physical paperwork and legal friction, we propose integrating with an accredited electronic contract and digital signature gateway (such as recognized e-contracting platforms available in Egypt and the Middle East). This enables 100% remote contract generation, verified OTP/biometric signing by tenants and landlords, and complete legal enforceability with an encrypted audit trail.</span>
+                    <span class="lang-ar hidden">لإنهاء المعاملات الورقية وتوقيع العقود دون الحاجة للمقابلات الشخصية، نقترح ربط المنصة مباشرة مع إحدى المنصات المعتمدة لإنشاء وتوثيق العقود الإلكترونية والتوقيع الرقمي (مثل المنصات المتاحة والمعتمدة في مصر والشرق الأوسط)، مما يتيح إصدار العقد إلكترونياً وتوقيعه من المستأجر والمالك رقمياً بحجية قانونية كاملة وسجل تدقيق مشفر.</span>
                 </p>
-
-                <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-
-                    <div class="bg-blue-500 h-full w-[50%]"></div>
-
+                <div class="mt-4 flex flex-wrap gap-2 text-xs">
+                    <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-lg border border-blue-500/30 font-semibold">100% Remote & Paperless</span>
+                    <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-lg border border-emerald-500/30 font-semibold">Legally Binding Signatures</span>
+                    <span class="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-lg border border-purple-500/30 font-semibold">Encrypted Tamper-Proof Audit Trail</span>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <span class="text-[10px] text-slate-500 mt-2 block font-medium">50% of Project Volume</span>
-
+    <!-- SECTION 5: Phases & Technical Weight Breakdown -->
+    <section id="phases" class="max-w-6xl mx-auto my-14">
+        <div class="text-center mb-8">
+            <span class="text-xs font-bold text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full uppercase tracking-wider">Milestones & Payments</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                <i class="fa-solid fa-chart-pie text-purple-400 mr-2 ml-2"></i> 
+                <span class="lang-en">Project Phases, Technical Weights & Payments ($3,300 USD)</span>
+                <span class="lang-ar hidden">مراحل التنفيذ والأوزان الفنية والدفعات التعاقدية ($3,300 USD)</span>
+            </h2>
+            <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">
+                <span class="lang-en">Structured across 3 months into 3 equal monthly payments of $1,100 each, strictly tied to functional engineering deliverables.</span>
+                <span class="lang-ar hidden">مقسمة على 3 أشهر في 3 دفعات متساوية بقيمة $1,100 شهرياً، ترتبط ارتباطاً وثيقاً بتسليمات برمجية واضحة تمنح العميل الأمان المالي الكامل.</span>
+            </p>
+        </div>
+        
+        <div class="space-y-6">
+            <!-- Phase 1 -->
+            <div class="glass-box p-6 rounded-2xl">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-bold text-base sm:text-lg text-blue-400">
+                        <span class="lang-en">Phase 1: Foundation Architecture & Core MVP (50% of Project Effort)</span>
+                        <span class="lang-ar hidden">المرحلة الأولى: التأسيس المعماري والنواة التشغيلية MVP (50% من حجم المشروع)</span>
+                    </h3>
+                    <span class="text-xl font-extrabold text-white">$1,100</span>
+                </div>
+                <p class="text-sm text-slate-400 mb-3 leading-relaxed">
+                    <span class="lang-en">Multi-Tenancy database foundation, Unified Flutter Mobile App (Tenant, Owner, Manager views), unit setup, lease contracts engine, automated payment reminders (WhatsApp & App), and core maintenance ticketing.</span>
+                    <span class="lang-ar hidden">بناء بنية الـ Multi-Tenancy وقواعد البيانات، تطوير تطبيق الموبايل الموحد (واجهات المستأجر والمالك والمدير)، إدارة الوحدات والعقود، تنبيهات الاستحقاق المؤتمتة، وبلاغات الصيانة الأساسية.</span>
+                </p>
+                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                    <div class="bg-blue-500 h-full w-[50%]"></div>
+                </div>
+                <div class="mt-3 text-xs text-slate-300 flex flex-wrap gap-2">
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Multi-Tenancy DB</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Unified Flutter App</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Lease Contracts Engine</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">WhatsApp & Push Gateway</span>
+                </div>
             </div>
 
             <!-- Phase 2 -->
-
-            <div class="glass-box p-6 rounded-2xl border-t-4 border-t-emerald-500">
-
-                <div class="flex justify-between items-center mb-3">
-
-                    <h4 class="font-bold text-white text-base">Phase 2: Operations</h4>
-
-                    <span class="text-emerald-400 font-extrabold">$1,100</span>
-
+            <div class="glass-box p-6 rounded-2xl">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-bold text-base sm:text-lg text-emerald-400">
+                        <span class="lang-en">Phase 2: Operations, Accounting & E-Contract Integration (35% of Project Effort)</span>
+                        <span class="lang-ar hidden">المرحلة الثانية: العمليات المحاسبية، والتكامل مع العقود الرقمية (35% من حجم المشروع)</span>
+                    </h3>
+                    <span class="text-xl font-extrabold text-white">$1,100</span>
                 </div>
-
-                <p class="text-[11px] sm:text-xs text-slate-400 mb-4 leading-relaxed h-16">
-
-                    <span class="lang-en">Advanced Accounting, Contractor Bidding, Move In/Out & E-Sign Integration.</span>
-
-                    <span class="lang-ar hidden">المحاسبة المتقدمة، تسوية الشيكات، دورة المقاولين، الفحوصات، والربط بمنصة العقود الإلكترونية.</span>
-
+                <p class="text-sm text-slate-400 mb-3 leading-relaxed">
+                    <span class="lang-en">Property ledger accounting, contractor quotation bidding and spending limits, digital move-in/out inspections, and integration with accredited electronic contracting & digital signature platforms.</span>
+                    <span class="lang-ar hidden">دفتر أستاذ العقار وتسوية أرباح الملاك، دورة مناقصات مقاولي الصيانة وسقف الاعتماد المالي، فحوصات الاستلام والتسليم الرقمية، والربط مع منصات العقود والتوقيع الإلكتروني.</span>
                 </p>
-
-                <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-
+                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
                     <div class="bg-emerald-500 h-full w-[35%]"></div>
-
                 </div>
-
-                <span class="text-[10px] text-slate-500 mt-2 block font-medium">35% of Project Volume</span>
-
+                <div class="mt-3 text-xs text-slate-300 flex flex-wrap gap-2">
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Property Ledger Accounting</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Contractor Quotation Flow</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Digital Move-In/Out</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">E-Contracting API</span>
+                </div>
             </div>
 
             <!-- Phase 3 -->
-
-            <div class="glass-box p-6 rounded-2xl border-t-4 border-t-purple-500">
-
-                <div class="flex justify-between items-center mb-3">
-
-                    <h4 class="font-bold text-white text-base">Phase 3: SaaS & Launch</h4>
-
-                    <span class="text-purple-400 font-extrabold">$1,100</span>
-
+            <div class="glass-box p-6 rounded-2xl">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-bold text-base sm:text-lg text-purple-400">
+                        <span class="lang-en">Phase 3: Commercial SaaS Engine, Security Auditing & Launch (15% of Project Effort)</span>
+                        <span class="lang-ar hidden">المرحلة الثالثة: محرك اشتراكات الـ SaaS، اختبارات الأمان والإطلاق الرسمي (15% من حجم المشروع)</span>
+                    </h3>
+                    <span class="text-xl font-extrabold text-white">$1,100</span>
                 </div>
-
-                <p class="text-[11px] sm:text-xs text-slate-400 mb-4 leading-relaxed h-16">
-
-                    <span class="lang-en">Commercial SaaS Billing, AI Predictive Tools, Testing & Final Store Release.</span>
-
-                    <span class="lang-ar hidden">نظام اشتراكات الـ SaaS، أدوات الذكاء الاصطناعي، والنشر النهائي على المتاجر.</span>
-
+                <p class="text-sm text-slate-400 mb-3 leading-relaxed">
+                    <span class="lang-en">Automated SaaS subscription billing for real estate companies, financial cashflow KPIs, performance load testing, end-to-end security audit, and App Store & Google Play production deployment.</span>
+                    <span class="lang-ar hidden">وحدة الفوترة الذاتية لاشتراكات الشركات العقارية، مؤشرات التدفق المالي والتحصيل، اختبارات الأحمال واختراق الأمان، والنشر النهائي على متاجر App Store و Google Play.</span>
                 </p>
-
-                <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
-
+                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
                     <div class="bg-purple-500 h-full w-[15%]"></div>
-
                 </div>
-
-                <span class="text-[10px] text-slate-500 mt-2 block font-medium">15% of Project Volume</span>
-
+                <div class="mt-3 text-xs text-slate-300 flex flex-wrap gap-2">
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">SaaS Subscription Billing</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Financial Cashflow KPIs</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">Security & Pen-Testing</span>
+                    <span class="bg-slate-900/90 border border-slate-700 px-2.5 py-1 rounded">App Store & Play Store Launch</span>
+                </div>
             </div>
-
         </div>
-
     </section>
 
-    <!-- FAQ Section for Client Confidence -->
-
+    <!-- SECTION 6: Interactive Expandable/Collapsible FAQ (Lighter Theme & Accordion) -->
     <section id="faq" class="max-w-4xl mx-auto my-14">
+        <div class="text-center mb-8">
+            <span class="text-xs font-bold text-amber-500 bg-amber-500/10 px-3 py-1 rounded-full uppercase tracking-wider">Client Transparency</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2">
+                <i class="fa-solid fa-circle-question text-amber-400 mr-2 ml-2"></i> 
+                <span class="lang-en">Frequently Asked Questions & Operational Clarity</span>
+                <span class="lang-ar hidden">أسئلة تشغيلية وإجابات شاملة لشفافية كاملة مع العميل</span>
+            </h2>
+            <p class="text-slate-400 text-sm mt-2 max-w-xl mx-auto">
+                <span class="lang-en">Click on any question card to expand or collapse details. Designed for total operational and commercial confidence.</span>
+                <span class="lang-ar hidden">اضغط على أي سؤال لتمديد البطاقة أو تقليصها. إجابات واقعية ومباشرة تغطي كل تفاصيل التشغيل.</span>
+            </p>
+            
+            <!-- Expand / Collapse All Controls -->
+            <div class="flex items-center justify-center gap-3 mt-4 text-xs">
+                <button type="button" onclick="expandAllFaq()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg border border-slate-700 transition">
+                    <i class="fa-solid fa-up-right-and-down-left-from-center mr-1 ml-1 text-blue-400"></i>
+                    <span class="lang-en">Expand All</span>
+                    <span class="lang-ar hidden">تمديد الكل</span>
+                </button>
+                <button type="button" onclick="collapseAllFaq()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-lg border border-slate-700 transition">
+                    <i class="fa-solid fa-down-left-and-up-right-to-center mr-1 ml-1 text-slate-400"></i>
+                    <span class="lang-en">Collapse All</span>
+                    <span class="lang-ar hidden">تقليص الكل</span>
+                </button>
+            </div>
+        </div>
 
-        <h2 class="text-2xl sm:text-3xl font-bold text-center text-white mb-8">
-
-            <i class="fa-solid fa-circle-question text-amber-400 mr-2 ml-2"></i> 
-
-            <span class="lang-en">Frequently Asked Questions & Client Assurance</span>
-
-            <span class="lang-ar hidden">أسئلة وإجابات لشفافية كاملة مع العميل</span>
-
-        </h2>
-
+        <!-- Lighter FAQ Accordion List -->
         <div class="space-y-4 text-sm">
 
             <!-- FAQ 1 -->
-
-            <div class="glass-box p-5 rounded-xl border border-slate-700">
-
-                <h4 class="font-bold text-white text-base">
-
-                    <span class="lang-en">Q: Why will tenants willingly download and use this application?</span>
-
-                    <span class="lang-ar hidden">س: لماذا سيقوم المستأجر بالتسجيل والدفع واستخدام هذا التطبيق أصلاً؟</span>
-
-                </h4>
-
-                <p class="text-slate-400 mt-2 leading-relaxed text-xs sm:text-sm">
-
-                    <span class="lang-en">A: Convenience and legal protection: Replaces physical office trips and multiple paper cheques with online card payments and clear payment receipts preventing legal disputes. Enables instant maintenance ticket submission via phone camera with live technician tracking.</span>
-
-                    <span class="lang-ar hidden">جـ: الراحة التامة وسهولة السداد أونلاين بالبطاقة بدلاً من الشيكات الورقية، مع سجل دفعات موثق يمنع النزاعات القانونية، وتقديم طلبات الصيانة بالكاميرا ومتابعة الفني لحظياً، وتحميل المستندات بضغطة زر.</span>
-
-                </p>
-
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(1)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q1</span>
+                        <span>
+                            <span class="lang-en">Why will tenants willingly register, pay, and use this application?</span>
+                            <span class="lang-ar hidden">لماذا سيقوم المستأجر بالتسجيل والدفع واستخدام هذا التطبيق أصلاً؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-1" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed">
+                    <span class="lang-en">Convenience, legal protection, and seamless services: Replaces physical office trips and multiple paper cheques with instant card payments and digital receipts preventing legal disputes. Enables 1-click maintenance ticket submission using phone camera with live technician tracking and rating. Provides 24/7 access to download official lease contracts, Ejari certificates, and verified payment statements.</span>
+                    <span class="lang-ar hidden">الراحة التامة والحماية القانونية: يستبدل التطبيق مشاوير المكاتب والشيكات الورقية بسداد إلكتروني فوري عبر البطاقات مع إيصالات دفع إلكترونية تمنع النزاعات. يتيح تقديم بلاغات الصيانة بالكاميرا ومتابعة الفني لحظياً وتقييمه، مع إمكانية تحميل عقد الإيجار ومستندات السداد الرسمية في أي وقت بضغطة زر.</span>
+                </div>
             </div>
 
             <!-- FAQ 2 -->
-
-            <div class="glass-box p-5 rounded-xl border border-slate-700">
-
-                <h4 class="font-bold text-white text-base">
-
-                    <span class="lang-en">Q: How does the platform prevent real estate companies' data from overlapping?</span>
-
-                    <span class="lang-ar hidden">س: كيف يضمن النظام عدم تداخل بيانات الشركات العقارية المختلفة؟</span>
-
-                </h4>
-
-                <p class="text-slate-400 mt-2 leading-relaxed text-xs sm:text-sm">
-
-                    <span class="lang-en">A: Built upon enterprise Multi-Tenancy Architecture with strict database-level isolation, guaranteeing complete security and privacy between different real estate firms.</span>
-
-                    <span class="lang-ar hidden">جـ: تعتمد المنصة معمارية Multi-Tenancy بنكية متقدمة مع عزل بيانات كل شركة (Data Isolation) على مستوى قاعدة البيانات لمنع أية تقاطعات.</span>
-
-                </p>
-
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(2)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q2</span>
+                        <span>
+                            <span class="lang-en">Who sets rental pricing and maintenance approval spending limits?</span>
+                            <span class="lang-ar hidden">من الذي يحدد السعر الأدنى والأقصى لموضوع الصيانة أو الإيجار؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-2" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed hidden">
+                    <span class="lang-en">In maintenance (Spending Threshold): Pre-agreed in the management contract between Property Manager and Landlord (e.g. repairs &le; 500 AED are approved immediately by the manager to prevent tenant delays; repairs &gt; 500 AED escalate automatically to the landlord's phone for 1-tap mobile approval). In rental pricing: Determined by the Property Manager in consultation with the Landlord, guided by local market benchmark indices (such as the DLD Rental Index in Dubai or prevailing market rates in Egypt).</span>
+                    <span class="lang-ar hidden">في الصيانة (سقف الاعتماد المالي): يُحدد مسبقاً في عقد إدارة الأملاك بين المدير والمالك (مثلاً: ما دون 500 درهم يعتمده المدير فوراً لسرعة الإنجاز، وما زاد عن 500 درهم يُحال آلياً لهاتف المالك للاعتماد بضغطة زر). وفي أسعار الإيجار: يحددها المدير بالاتفاق مع المالك، استناداً إلى المؤشرات الإيجارية الرسمية لضمان الامتثال التام.</span>
+                </div>
             </div>
 
             <!-- FAQ 3 -->
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(3)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q3</span>
+                        <span>
+                            <span class="lang-en">Is the Property Manager the same person who releases contractor payments?</span>
+                            <span class="lang-ar hidden">هل مدير العقار هو نفسه من يصرف فواتير المقاولين ويسجل المصروفات؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-3" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed hidden">
+                    <span class="lang-en">To ensure professional governance and prevent fraud, the system enforces Segregation of Duties. The Property Manager approves the work order operationally, while the Accountant audits invoices, reconciles deposits, records the operating expense against the property ledger, and executes net owner payouts. In smaller companies, permissions can be granted to a single user if desired.</span>
+                    <span class="lang-ar hidden">لضمان الحوكمة ومنع التلاعب، يوفر النظام فصلاً دقيقاً للصلاحيات (Segregation of Duties). المدير يعتمد أمر العمل من الناحية الفنية والتشغيلية، بينما يقوم المحاسب المالي بمطابقة الفاتورة وصرف المستحقات وتوثيقها كمصروف في دفتر أستاذ العقار وخصمها من صافي أرباح المالك. وفي الشركات الصغيرة، يمكن دمج الصلاحيتين لنفس المستخدم بمرونة.</span>
+                </div>
+            </div>
 
-            <div class="glass-box p-5 rounded-xl border border-slate-700">
+            <!-- FAQ 4 -->
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(4)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q4</span>
+                        <span>
+                            <span class="lang-en">How does integrating an accredited E-Contract platform benefit us legally?</span>
+                            <span class="lang-ar hidden">ما فائدة التكامل مع منصة لإنشاء العقود والتوقيع الإلكتروني من الناحية القانونية؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-4" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-4" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed hidden">
+                    <span class="lang-en">Partnering with an accredited electronic contract platform (available in Egypt and the region) grants lease agreements full legal enforceability without requiring physical signatures. It provides authenticated OTP verification, cryptographic audit trails, and automatic registration, reducing contract turnaround time from days to under 5 minutes.</span>
+                    <span class="lang-ar hidden">الربط مع منصة معتمدة للعقود الرقمية والتوقيع الإلكتروني (مثل المنصات المعتمدة في مصر والمنطقة) يمنح عقود الإيجار حجية قانونية كاملة وتنفيذية أمام القضاء دون حاجة للحضور الشخصي أو التوقيع الورقي، مع توثيق هوية الأطراف برمز الـ OTP وسجل مشفر غير قابل للتلاعب، ويختصر توقيع العقد من أيام إلى 5 دقائق فقط.</span>
+                </div>
+            </div>
 
-                <h4 class="font-bold text-white text-base">
+            <!-- FAQ 5 -->
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(5)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q5</span>
+                        <span>
+                            <span class="lang-en">How does the system support traditional paper cheques alongside online card payments?</span>
+                            <span class="lang-ar hidden">كيف يتعامل النظام مع الشيكات الورقية القديمة بجانب الدفع الإلكتروني بالبطاقات؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-5" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-5" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed hidden">
+                    <span class="lang-en">The system supports a hybrid financial model: Tenants can pay installments via online credit/debit cards or upload bank cheque slips. For paper cheques, the system maintains a Cheque Ledger tracking physical cheque custody, bank deposit due dates, clearance statuses, and automated alert workflows for returned or bounced cheques.</span>
+                    <span class="lang-ar hidden">يدعم النظام نموذجاً مالياً هجيناً (Hybrid): يمكن للمستأجر السداد أونلاين بالبطاقات، أو تسجيل الشيكات الورقية ورفع صورها؛ حيث يمتلك النظام دفتر شيكات رقمي (Cheque Ledger) يتابع تواريخ استحقاق إيداع الشيكات في البنك، وحالة الصرف، ويرسل تنبيهات تلقائية في حال ارتداد أي شيك.</span>
+                </div>
+            </div>
 
-                    <span class="lang-en">Q: What is the Platform Owner's touchpoint with private company finances?</span>
+            <!-- FAQ 6 -->
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(6)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q6</span>
+                        <span>
+                            <span class="lang-en">What is the Platform Owner's touchpoint with private company finances?</span>
+                            <span class="lang-ar hidden">ما هو تقاطع صاحب المنصة (Super Admin) مع الحسابات الداخلية للشركات؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-6" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-6" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed hidden">
+                    <span class="lang-en">Zero interference. Tenant and company financial data is strictly isolated via database-level Multi-Tenancy. The platform owner only collects SaaS software subscription fees from the real estate company and standard payment gateway processing margins.</span>
+                    <span class="lang-ar hidden">لا يتدخل أبداً في الحسابات الداخلية للشركات أو أرباح الملاك بفضل العزل التام للبيانات (Multi-Tenancy Isolation). يقتصر تقاطع صاحب المنصة على تحصيل قيمة اشتراك الـ SaaS الدوري من الشركة العقارية أو نسبة بوابة الدفع العامة.</span>
+                </div>
+            </div>
 
-                    <span class="lang-ar hidden">س: ما هو تقاطع صاحب المنصة (Super Admin) مع الحسابات الداخلية للشركات؟</span>
+            <!-- FAQ 7 -->
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(7)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q7</span>
+                        <span>
+                            <span class="lang-en">Why is a Unified Mobile App (Flutter) preferred over developing 3 separate apps?</span>
+                            <span class="lang-ar hidden">لماذا يفضل استخدام تطبيق موبايل موحد (Flutter) بدلاً من تطوير 3 تطبيقات منفصلة؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-7" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-7" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed hidden">
+                    <span class="lang-en">It cuts ongoing maintenance, testing, and App Store hosting costs by over 60%. Furthermore, it delivers a superior user experience by allowing individuals who are both landlords and tenants to switch roles seamlessly in 1 tap without downloading and maintaining multiple apps.</span>
+                    <span class="lang-ar hidden">يوفر تكلفة الصيانة والتحديث ونشر المتاجر بنسبة تفوق 60% بفضل قاعدة الكود الموحدة، كما يوفر تجربة استخدام فائقة تتيح للمستخدم الذي يمتلك عقاراً ومستأجراً لوحدة أخرى التنقل بين الواجهتين بضغطة زر واحدة دون تحميل عدة تطبيقات.</span>
+                </div>
+            </div>
 
-                </h4>
-
-                <p class="text-slate-400 mt-2 leading-relaxed text-xs sm:text-sm">
-
-                    <span class="lang-en">A: Zero interference. Data is strictly isolated. The platform owner only collects SaaS software subscription fees from the real estate company and standard payment gateway processing fees.</span>
-
-                    <span class="lang-ar hidden">جـ: لا يتدخل أبداً في الحسابات الداخلية للشركات نظراً للعزل التام. يقتصر تقاطعه على تحصيل اشتراك الـ SaaS أو عمولة بوابة الدفع العامة.</span>
-
-                </p>
-
+            <!-- FAQ 8 -->
+            <div class="faq-card bg-slate-50 text-slate-900 border border-slate-200/90 rounded-2xl shadow-sm hover:shadow-md transition overflow-hidden">
+                <button type="button" onclick="toggleFaq(8)" class="w-full p-5 text-left rtl:text-right flex items-center justify-between gap-4 font-bold text-slate-900 text-sm sm:text-base hover:text-blue-600 transition">
+                    <div class="flex items-center gap-3">
+                        <span class="w-7 h-7 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-black flex-shrink-0">Q8</span>
+                        <span>
+                            <span class="lang-en">How does the platform guarantee complete privacy and zero data leakage between real estate firms?</span>
+                            <span class="lang-ar hidden">كيف يضمن النظام عزل بيانات الشركات العقارية المختلفة وعدم تسريب أي معلومات؟</span>
+                        </span>
+                    </div>
+                    <i id="faq-icon-8" class="fa-solid fa-chevron-down text-slate-400 text-xs transition-transform duration-300 flex-shrink-0"></i>
+                </button>
+                <div id="faq-content-8" class="px-5 pb-5 pt-1 text-slate-700 border-t border-slate-200/80 text-xs sm:text-sm leading-relaxed hidden">
+                    <span class="lang-en">The platform is architected around enterprise Multi-Tenancy with cryptographic tenant IDs and database row-level security (RLS). Every database query is strictly scoped to the active tenant workspace, preventing any company from ever accessing another company's records.</span>
+                    <span class="lang-ar hidden">تعتمد المنصة معمارية Multi-Tenancy بنكية متقدمة مع معرفات شركات مشفرة (Tenant IDs) وسياسات أمان على مستوى الصفوف (Row-Level Security) في قاعدة البيانات؛ مما يضمن أن كل استعلام أو طلب محصور فقط في نطاق الشركة صاحبة الحساب دون أدنى احتمال للتسريب.</span>
+                </div>
             </div>
 
         </div>
-
     </section>
 
     <!-- Footer -->
-
-    <footer class="text-center text-slate-500 text-xs my-10 pt-6 border-t border-slate-800">
-
-        <p>System Architecture & Visual Blueprint Proposal &copy; 2026. All rights reserved.</p>
-
+    <footer class="max-w-6xl mx-auto mt-16 pt-8 pb-12 border-t border-slate-800 text-center text-xs text-slate-400">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div class="flex items-center space-x-2 rtl:space-x-reverse">
+                <i class="fa-solid fa-city text-blue-500"></i>
+                <span class="font-bold text-slate-200">AKAR DUBAI &bull; Engineering Proposal</span>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="#stats" class="hover:text-blue-400">Overview</a>
+                <a href="#roles" class="hover:text-blue-400">Roles</a>
+                <a href="#flows" class="hover:text-blue-400">Flows</a>
+                <a href="#phases" class="hover:text-blue-400">Milestones</a>
+                <a href="#faq" class="hover:text-blue-400">FAQ</a>
+            </div>
+            <div>
+                <a href="proposal.pdf" download="المخرجات.pdf" class="text-blue-400 hover:text-blue-300 font-bold">
+                    <i class="fa-solid fa-file-pdf mr-1 ml-1 text-red-400"></i>
+                    <span class="lang-en">Download Proposal PDF</span>
+                    <span class="lang-ar hidden">تحميل ملف الوثيقة (PDF)</span>
+                </a>
+            </div>
+        </div>
+        <p>&copy; 2026 Property Management Platform Architecture. All rights reserved.</p>
     </footer>
 
-    <!-- Bilingual JavaScript Logic -->
-
+    <!-- Interactive JavaScript Logic: Language Switcher & FAQ Accordion -->
     <script>
-
-        let currentLang = 'en'; // Changed default to English, you can switch back to 'ar'
+        let currentLang = 'en'; // Default language is English
 
         function toggleLanguage() {
-
             currentLang = currentLang === 'en' ? 'ar' : 'en';
-
             applyLanguage(currentLang);
-
         }
 
         function applyLanguage(lang) {
-
             document.documentElement.lang = lang;
-
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
             // Toggle element visibilities
-
             const enElements = document.querySelectorAll('.lang-en');
-
             const arElements = document.querySelectorAll('.lang-ar');
 
             enElements.forEach(el => {
-
                 if (lang === 'ar') {
-
                     el.classList.add('hidden');
-
                 } else {
-
                     el.classList.remove('hidden');
-
                 }
-
             });
 
             arElements.forEach(el => {
-
                 if (lang === 'ar') {
-
                     el.classList.remove('hidden');
-
                 } else {
-
                     el.classList.add('hidden');
-
                 }
-
             });
 
             // Update button label
-
             const btnText = document.getElementById('langBtnText');
-
             if (btnText) {
-
                 btnText.textContent = lang === 'en' ? 'العربية' : 'English';
-
             }
-
         }
 
-        // Initialize with default language
+        // Accordion functionality for FAQ cards (Expand / Collapse)
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            if (!content) return;
 
+            const isHidden = content.classList.contains('hidden');
+            if (isHidden) {
+                content.classList.remove('hidden');
+                if (icon) icon.classList.add('rotate-180');
+            } else {
+                content.classList.add('hidden');
+                if (icon) icon.classList.remove('rotate-180');
+            }
+        }
+
+        function expandAllFaq() {
+            document.querySelectorAll('[id^="faq-content-"]').forEach(el => el.classList.remove('hidden'));
+            document.querySelectorAll('[id^="faq-icon-"]').forEach(el => el.classList.add('rotate-180'));
+        }
+
+        function collapseAllFaq() {
+            document.querySelectorAll('[id^="faq-content-"]').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('[id^="faq-icon-"]').forEach(el => el.classList.remove('rotate-180'));
+        }
+
+        // Initialize with default language on DOM load
         document.addEventListener('DOMContentLoaded', () => {
-
-             // You can change 'en' to 'ar' here to make Arabic the default on load
-
-             applyLanguage('en'); 
-
+            applyLanguage('en');
         });
-
     </script>
 
 </body>
-
 </html>
