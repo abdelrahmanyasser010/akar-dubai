@@ -1,0 +1,476 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+    <meta charset="utf-8">
+    <title>وثيقة العرض الفني والتجاري | المنصة العقارية الذكية</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+            direction: rtl;
+            text-align: right;
+            line-height: 1.6;
+            color: #1e293b;
+            margin: 40px;
+        }
+        h1, h2, h3, h4 {
+            color: #0f172a;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 26pt;
+            border-bottom: 3px solid #2563eb;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            color: #1e3a8a;
+        }
+        h2 {
+            font-size: 18pt;
+            color: #1e40af;
+            border-right: 5px solid #2563eb;
+            padding-right: 12px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            background-color: #f1f5f9;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+        h3 {
+            font-size: 14pt;
+            color: #334155;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+        p {
+            font-size: 11pt;
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+        .highlight-box {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-right: 4px solid #2563eb;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .stats-table td {
+            background-color: #f8fafc;
+            border: 1px solid #cbd5e1;
+            padding: 15px;
+            text-align: center;
+            width: 25%;
+        }
+        .stats-table .number {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #2563eb;
+            display: block;
+        }
+        .stats-table .label {
+            font-size: 10pt;
+            color: #64748b;
+        }
+        table.data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 10.5pt;
+        }
+        table.data-table th {
+            background-color: #1e293b;
+            color: #ffffff;
+            font-weight: bold;
+            padding: 10px;
+            border: 1px solid #1e293b;
+            text-align: right;
+        }
+        table.data-table td {
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            background-color: #ffffff;
+            vertical-align: top;
+        }
+        table.data-table tr:nth-child(even) td {
+            background-color: #f8fafc;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 9pt;
+            font-weight: bold;
+            border-radius: 4px;
+            color: #ffffff;
+        }
+        .badge-blue { background-color: #2563eb; }
+        .badge-green { background-color: #059669; }
+        .badge-purple { background-color: #7c3aed; }
+        .badge-amber { background-color: #d97706; }
+        .footer-note {
+            margin-top: 50px;
+            border-top: 1px solid #cbd5e1;
+            padding-top: 15px;
+            font-size: 9pt;
+            color: #64748b;
+            text-align: center;
+        }
+        .signature-box {
+            margin-top: 40px;
+            width: 100%;
+        }
+        .signature-box td {
+            width: 50%;
+            padding: 20px;
+            border: 1px dashed #cbd5e1;
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cover Title -->
+    <div style="text-align: center; margin-bottom: 40px; padding: 20px; background-color: #0f172a; color: white; border-radius: 8px;">
+        <h1 style="color: #60a5fa; border: none; margin-bottom: 5px;">وثيقة العرض الفني والتجاري المعتمد</h1>
+        <h3 style="color: #cbd5e1; margin-top: 0;">مشروع تطوير المنصة العقارية السحابية وتطبيق الموبايل الموحد</h3>
+        <p style="color: #94a3b8; font-size: 11pt; margin-top: 10px;">
+            تاريخ التقديم: أكتوبر 2026 | النسخة: 2.0 (Proposal & Technical Architecture Brief)
+        </p>
+    </div>
+
+    <!-- Key Metrics Summary Table -->
+    <table class="stats-table">
+        <tr>
+            <td>
+                <span class="number">$3,300 USD</span>
+                <span class="label">التكلفة الإجمالية</span>
+                <small style="color: #059669; display: block; font-size: 8pt; margin-top: 4px;">مقسمة على 3 دفعات متساوية</small>
+            </td>
+            <td>
+                <span class="number">3 أشهر</span>
+                <span class="label">مدة التنفيذ الإجمالية</span>
+                <small style="color: #2563eb; display: block; font-size: 8pt; margin-top: 4px;">تسليم مرحلي شهري</small>
+            </td>
+            <td>
+                <span class="number">تطبيق + 2 لوحة</span>
+                <span class="label">الهيكل البرمجي</span>
+                <small style="color: #7c3aed; display: block; font-size: 8pt; margin-top: 4px;">تطبيق Flutter موحد + لوحتي ويب</small>
+            </td>
+            <td>
+                <span class="number">Multi-Tenancy</span>
+                <span class="label">عزل الشركات والبيانات</span>
+                <small style="color: #d97706; display: block; font-size: 8pt; margin-top: 4px;">أمان بنكي مستقل لكل شركة</small>
+            </td>
+        </tr>
+    </table>
+
+    <!-- Executive Summary -->
+    <h2>1. الملخص التنفيذي للمشروع (Executive Summary)</h2>
+    <p>
+        يهدف هذا المشروع إلى بناء منصة سحابية شاملة ومتقدمة لإدارة العقارات والأملاك وتأجير الوحدات، تجمع بين <strong>تطبيق هاتف ذكي موحد (Unified Mobile App)</strong> يخدم المستأجرين، الملاك، المقاولين، ومديري العقارات، مع <strong>لوحتي تحكم سحابيتين (Dual Web Dashboards)</strong> تلبي الاحتياجات الإدارية والمحاسبية الدقيقة.
+    </p>
+    <p>
+        تتميز المنصة بتطبيق أعلى معايير الحوكمة المالية وفصل الصلاحيات (Segregation of Duties) بين مديري العقارات والمحاسبين الماليين، مع أتمتة دورة التحصيل، تسوية الشيكات، وإسناد الصيانة، وصولاً إلى تحويل صافي الأرباح للملاك بضغطة زر وتوليد التقارير المالية والضريبية فورياً.
+    </p>
+
+    <!-- System Roles Section -->
+    <h2>2. هيكل الأدوار الستة وفصل الصلاحيات (System Roles & RACI Matrix)</h2>
+    <p>
+        صُمم النظام ليمنع أي تداخل بين القرارات التشغيلية والمطابقات المالية، حيث يشتمل على 6 أدوار رئيسية:
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 22%;">الدور (User Role)</th>
+                <th style="width: 18%;">بيئة العمل</th>
+                <th style="width: 35%;">المسؤوليات والوظائف الأساسية</th>
+                <th style="width: 25%;">نقاط التقاطع مع باقي الأدوار</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>1. مدير المنصة العام<br>(Super Admin)</strong></td>
+                <td><span class="badge badge-purple">Web Dashboard</span></td>
+                <td>التحكم في اشتراكات شركات إدارة العقارات (SaaS Subscriptions)، مراقبة المنصة المركزية، وعزل بيانات الشركات (Multi-Tenancy).</td>
+                <td><strong>لا يتدخل مطلقاً</strong> في حسابات الشركات الداخلية أو أرباح الملاك؛ تقاطعه فقط تحصيل رسوم الاشتراك ونسب بوابات الدفع العامة.</td>
+            </tr>
+            <tr>
+                <td><strong>2. مدير العقارات<br>(Property Manager)</strong></td>
+                <td><span class="badge badge-blue">90% Web + Mobile</span></td>
+                <td>إدخال العقارات وتسكين الوحدات، صياغة العقود وتحديد الشروط، إسناد الصيانة للمقاولين، ومتابعة نسب الإشغال والتحصيل.</td>
+                <td>يعتمد الصيانة الفورية حتى الحد المتفق عليه (&le; 500 درهم)، ويتواصل مع المالك للمصروفات الكبرى، ويحول الشيكات للمحاسب للمطابقة.</td>
+            </tr>
+            <tr>
+                <td><strong>3. المحاسب المالي<br>(Finance / Accountant)</strong></td>
+                <td><span class="badge badge-green">Web Dashboard</span></td>
+                <td>الرقابة المالية المستقلة، مطابقة الإيداعات والتحويلات البنكية، متابعة الشيكات المرتجعة، وصرف فواتير المقاولين المعتمدة.</td>
+                <td>يخصم المصروفات وعمولة الإدارة في دفتر الأستاذ (Property Ledger) ويصرف صافي أرباح المالك مع كشف حساب تفصيلي.</td>
+            </tr>
+            <tr>
+                <td><strong>4. مالك العقار<br>(Landlord / Owner)</strong></td>
+                <td><span class="badge badge-blue">Unified Mobile App</span></td>
+                <td>متابعة أداء العقارات والأرباح لحظياً، تحميل الكشوفات والتقارير المالية، واستلام التوزيعات المالية مباشرة لحسابه البنكي.</td>
+                <td>يستقبل إشعاراً فورياً على الموبايل للموافقة أو الرفض بضغطة زر على فواتير الصيانة التي تتجاوز الحد الأدنى المالي.</td>
+            </tr>
+            <tr>
+                <td><strong>5. المستأجر<br>(Tenant)</strong></td>
+                <td><span class="badge badge-amber">Unified Mobile App</span></td>
+                <td>سداد الإيجار أونلاين أو رفع إيصال الشيكات، استقبال تنبيهات الاستحقاق، وتوقيع العقد إلكترونياً.</td>
+                <td>يرفع بلاغات الصيانة بالصور والفيديو مع موعد الزيارة المفضل، ويتابع وصول الفني ويؤكد الإنجاز ويقيم الجودة.</td>
+            </tr>
+            <tr>
+                <td><strong>6. مقاول الصيانة والفني<br>(Contractor / Tech)</strong></td>
+                <td><span class="badge badge-purple">Unified Mobile App</span></td>
+                <td>استلام أوامر العمل ميدانياً، معاينة العطل، تقديم عروض الأسعار (Quotations)، وتوثيق الإصلاحات قبل وبعد العمل.</td>
+                <td>ينسق الزيارة مع المستأجر، يرفع الفاتورة مع التوقيع لمدير العقار والمحاسب لصرف مستحقاته دون تأخير.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Money & Operations Flow -->
+    <h2>3. دورة تدفق الأموال والمعاملات الدائرية (Financial Flow & Loop)</h2>
+    <div class="highlight-box">
+        <strong>مسار تدفق السيولة الأساسي:</strong>
+        <ol>
+            <li><strong>المستأجر يدفع الإيجار:</strong> إما أونلاين بالبطاقة البنكية أو برفع تفاصيل الشيك البنكي، ويتولد سند قبض آلي مشفر.</li>
+            <li><strong>المحاسب يطابق الدفعة:</strong> يطابق التحصيل مع البنك ويسجلها في حساب العقار، ثم يخصم عمولة إدارة العقار وتكاليف الصيانة المعتمدة.</li>
+            <li><strong>تحويل صافي الأرباح للمالك:</strong> يتم إيداع صافي المبلغ في حساب المالك البنكي بضغطة زر مع إصدار كشف حساب تفصيلي PDF فوري.</li>
+        </ol>
+    </div>
+
+    <h3>المسار الدائري الراجع: إدارة وديعة التأمين (Security Deposit Loop)</h3>
+    <p>
+        تُحجز قيمة التأمين التي يدفعها المستأجر عند توقيع العقد في حساب أمانات خاص بالعقار. وعند استلام الوحدة (Move-In) يتم إجراء فحص رقمي بالصور (Digital Inspection). وعند إخلاء المستأجر للوحدة (Move-Out)، يُعاد الفحص الرقمي لمطابقة الأضرار؛ إن وجدت أضرار تُخصم قيمتها من التأمين وتُصرف لصيانة العقار، ويُعاد المتبقي إلكترونياً إلى حساب المستأجر.
+    </p>
+
+    <h3>قاعدة الحد المالي المعتمد للصيانة (Spending Threshold)</h3>
+    <p>
+        لضمان سرعة معالجة الأعطال دون إزعاج المالك بطلبات متكررة، يتم الاتفاق مسبقاً في اتفاقية إدارة العقار على سقف مالي محدد (مثال: <strong>500 درهم</strong>):
+    </p>
+    <ul>
+        <li><strong>أقل من أو يساوي 500 درهم:</strong> يعتمدها مدير العقار فورياً لتكليف المقاول دون تأخير.</li>
+        <li><strong>أكبر من 500 درهم:</strong> يُرسل إشعار فوري لمالك العقار على هاتفه مع صور العطل وتفاصيل عرض السعر للموافقة أو الرفض بضغطة زر واحدة.</li>
+    </ul>
+
+    <!-- Architecture: Unified App vs Dashboards -->
+    <h2>4. معمارية المنظومة: تطبيق موبايل واحد موحد + لوحتي تحكم ويب</h2>
+    <div class="highlight-box">
+        <h3 style="margin-top: 0; color: #1e3a8a;">لماذا نوصي بـ "تطبيق موبايل موحد (Unified App)" بدلاً من 3 تطبيقات؟</h3>
+        <p>
+            تعتمد المنصة تقنية <strong>Flutter</strong> لتوفير تطبيق موحد وذكي يتم تنزيله من متجري App Store وGoogle Play، ويقدم تجربة ديناميكية تتغير وفق دور المستخدم المسجل (Dynamic Role-based UI):
+        </p>
+        <ul>
+            <li><strong>توفير هائل في تكلفة الصيانة والنشر:</strong> تحديث واحد وكود برمجي موحد، مما يوفر أكثر من 60% من تكاليف الدعم الفني وتراخيص المتاجر السنوية.</li>
+            <li><strong>التبديل الفوري بين الأدوار (Role Switching):</strong> إذا كان المستخدم مالكاً لعقار وفي نفس الوقت مستأجراً لعقار آخر، يستطيع التبديل بين اللوحتين داخل نفس التطبيق بضغطة زر واحدة دون الحاجة لتثبيت تطبيقين.</li>
+            <li><strong>كفاءة استغلال الموارد:</strong> محرك التنبيهات (Push Notifications)، خدمات الموقع الجغرافي، التخزين المؤقت، وخدمات الكاميرا يتم تطويرها مرة واحدة لتعمل بكفاءة مع الجميع.</li>
+        </ul>
+    </div>
+
+    <h3>لوحتا التحكم السحابيتان (Dual Web Dashboards):</h3>
+    <ul>
+        <li><strong>لوحة تحكم المنصة (Super Admin Dashboard):</strong> لإدارة اشتراكات الشركات وباقات الـ SaaS، مراقبة استقرار النظام وعزل البيانات، وإعدادات بوابات الدفع العامة.</li>
+        <li><strong>لوحة تحكم الشركة وإدارة العقارات والمحاسبة (Company & Finance Dashboard):</strong> بيئة العمل الرئيسية (90%) لمدير العقارات والمحاسب لإدخال العقارات، صياغة العقود، التسويات البنكية، واستخراج التقارير والتحليلات الضخمة وتصديرها بصيغ Excel وPDF.</li>
+    </ul>
+
+    <!-- E-Contract Integration -->
+    <h2>5. التكامل مع منصة العقود والتوقيع الإلكتروني المعتمدة (E-Contract API)</h2>
+    <p>
+        لتيسير الإجراءات القانونية وتفادي أعباء العقود الورقية والطباعة، سنقوم بربط المنصة برمجياً مع إحدى المنصات المعتمدة قانونياً لإنشاء وتوثيق العقود والتوقيع الرقمي (مثل المنصات المعتمدة في مصر ومنطقة الشرق الأوسط).
+    </p>
+    <div class="highlight-box">
+        <strong>مزايا هذا التكامل الاستراتيجي:</strong>
+        <ul>
+            <li><strong>إصدار العقد آلياً:</strong> سحب بيانات العقار، المالك، والمستأجر والشروط المالية وصياغة العقد تلقائياً.</li>
+            <li><strong>توقيع رقمي ملزم قانونياً:</strong> إرسال رابط التوقيع للمستأجر والمالك مع التحقق من الهوية عبر الرمز السري لمرة واحدة (OTP) أو البصمة.</li>
+            <li><strong>سجل تدقيق رقمي مشفر (Audit Trail):</strong> يحفظ وقت وتاريخ والـ IP الخاص بكل توقيع لضمان الحجية القانونية الكاملة أمام الجهات الرسمية.</li>
+        </ul>
+    </div>
+
+    <!-- Onboarding Methods -->
+    <h2>6. آلية انضمام وتسجيل المستخدمين (User Onboarding)</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>الفئة المستهدفة</th>
+                <th>طريقة التسجيل والانضمام</th>
+                <th>الضوابط الأمنية</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>إدارة الشركة والمحاسبون</strong></td>
+                <td>إنشاء مباشر من لوحة التحكم (Dashboard Only) بواسطة مدير الشركة.</td>
+                <td>صلاحيات دقيقة (RBAC) مع التحقق بخطوتين (2FA) لحماية الحسابات.</td>
+            </tr>
+            <tr>
+                <td><strong>الملاك والمستأجرون</strong></td>
+                <td>رابط دعوة ذكي (Magic Link / SMS / WhatsApp) يُرسل آلياً فور إدخال العقد.</td>
+                <td>تسجيل الدخول برقم الهاتف ورمز التحقق (OTP) يربط المستخدم بعقاراته فوراً.</td>
+            </tr>
+            <tr>
+                <td><strong>شركات العقارات الجديدة</strong></td>
+                <td>تسجيل تجاري ذاتي عبر موقع المنصة (SaaS Self-Signup).</td>
+                <td>اختيار الخطة، إدخال بطاقة الدفع، وإنشاء قاعدة البيانات المعزولة تلقائياً.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Project Timeline & Phases Breakdown -->
+    <h2>7. الجدول الزمني ومراحل التنفيذ والأوزان المالية ($3,300 USD)</h2>
+    <p>
+        تم تقسيم المشروع بدقة هندسية عالية ليتماشى مع الميزانية الإجمالية <strong>($3,300 USD)</strong> والمدة الزمنية <strong>(3 أشهر)</strong>، مقسمة على <strong>3 دفعات متساوية بقيمة $1,100 لكل مرحلة</strong>، ترتبط كل دفعة بتسليم مرحلي مستقل يضمن للعميل التحكم الكامل وراحة البال:
+    </p>
+
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th style="width: 15%;">المرحلة</th>
+                <th style="width: 15%;">المدة والوزن الفني</th>
+                <th style="width: 15%;">الدفعة المستحقة</th>
+                <th style="width: 55%;">المخرجات الفنية والتسليمات المعتمدة (Deliverables)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>المرحلة الأولى<br>(MVP Core)</strong></td>
+                <td>الشهر الأول<br><span class="badge badge-blue">50% من الجهد</span></td>
+                <td><strong>$1,100 USD</strong></td>
+                <td>
+                    • تأسيس البنية السحابية وعزل بيانات الشركات (Multi-Tenancy).<br>
+                    • بناء تطبيق الموبايل الموحد (واجهات المستأجر، المالك، ومدير العقار).<br>
+                    • إدارة العقارات والوحدات وعقود الإيجار الأساسية.<br>
+                    • محرك التنبيهات التلقائي (Push Notifications & WhatsApp).<br>
+                    • دورة بلاغات الصيانة الأساسية وتتبع حالتها.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>المرحلة الثانية<br>(Operations & E-Sign)</strong></td>
+                <td>الشهر الثاني<br><span class="badge badge-green">35% من الجهد</span></td>
+                <td><strong>$1,100 USD</strong></td>
+                <td>
+                    • نظام المحاسبة والتسويات البنكية ومطابقة الشيكات المرتجعة.<br>
+                    • دفتر الأستاذ لكل عقار (Property Ledger) وحساب صافي دخل الملاك.<br>
+                    • دورة مناقصات وعروض أسعار المقاولين (Contractor Bidding).<br>
+                    • شاشات استلام وتسليم العقارات الرقمية (Move-In / Move-Out Inspection).<br>
+                    • التكامل مع منصة العقود والتوقيع الإلكتروني المعتمدة.
+                </td>
+            </tr>
+            <tr>
+                <td><strong>المرحلة الثالثة<br>(SaaS & AI Scale-Up)</strong></td>
+                <td>الشهر الثالث<br><span class="badge badge-purple">15% من الجهد</span></td>
+                <td><strong>$1,100 USD</strong></td>
+                <td>
+                    • محرك اشتراكات الـ SaaS التجاري والتسجيل الذاتي والدفع الإلكتروني.<br>
+                    • مساعدات الذكاء الاصطناعي (AI Assistant) للمستأجر ومدير العقارات.<br>
+                    • التحليلات التنبؤية لمخاطر التعثر المالي واكتشاف الشذوذ في الصيانة.<br>
+                    • اختبارات الأمان، ضغط السيرفرات (Load Testing)، ومعالجة الثغرات.<br>
+                    • النشر الرسمي للتطبيق على متاجر App Store وGoogle Play وإطلاق المنصة.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="highlight-box">
+        <strong>ميزة المرونة للعميل:</strong>
+        يعكس هذا التقسيم شفافية كاملة؛ فإذا رغب العميل في إطلاق المرحلة الأولى (MVP) فوراً إلى السوق لتجربة العمليات الحية، فإن المرحلة الأولى تمثل بالفعل 50% من القيمة التشغيلية للنظام وبأعلى درجات الاستقرار.
+    </div>
+
+    <!-- Tech Stack Allocation -->
+    <h2>8. توزيع الجهد الهندسي حسب المنصات التقنية</h2>
+    <table class="data-table">
+        <thead>
+            <tr>
+                <th>المكون التقني</th>
+                <th>نسبة الجهد والتكلفة</th>
+                <th>التفاصيل والمبررات الهندسية</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>الباك إند وقواعد البيانات السحابية</strong></td>
+                <td>35% - 40%</td>
+                <td>العقل المدبر؛ يشمل بنية Multi-Tenancy، نظام الصلاحيات RBAC، محرك الحسابات المالية، والمطابقة التلقائية، وبناء واجهات البرمجة (APIs).</td>
+            </tr>
+            <tr>
+                <td><strong>تطبيق الهاتف المحمول (Flutter)</strong></td>
+                <td>30% - 35%</td>
+                <td>تطوير تطبيق موحد عالي السرعة يخدم 4 أدوار، مع الربط بالكاميرا لبلاغات الصيانة والفحص الرقمي، ودعم كامل للغتين العربية والإنجليزية.</td>
+            </tr>
+            <tr>
+                <td><strong>لوحات التحكم السحابية (Web Dashboards)</strong></td>
+                <td>25% - 30%</td>
+                <td>واجهات الإدارة والمحاسبة؛ جداول البيانات الضخمة، الفلاتر المتقدمة، شاشات التقارير المالية والرسوم البيانية، وتصدير PDF/Excel.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- FAQ -->
+    <h2>9. الأسئلة الشائعة وإيضاحات العميل (FAQ & Transparency)</h2>
+    <div class="highlight-box">
+        <h4>س1: لماذا يفضل المستأجر استخدام التطبيق بدلاً من الطرق التقليدية؟</h4>
+        <p>
+            المستأجر لا يدفع اشتراكاً للتطبيق بل يجده وسيلة راحة مثالية: يدفع إيجاره أونلاين ببطاقة الائتمان ويتخلص من أعباء الشيكات الورقية، ويحصل على وصولات رسمية موثقة تمنع أي خلاف مالي، ويرفع طلبات الصيانة بالصور والفيديو مع تتبع مسار الفني وتقييمه لحظياً.
+        </p>
+
+        <h4>س2: من الذي يحدد أسعار الإيجارات والحدود المالية للصيانة؟</h4>
+        <p>
+            في الصيانة، يتم تحديد سقف الاعتماد المالي مسبقاً في اتفاقية إدارة العقار (مثلاً حتى 500 درهم يوافق عليها المدير فوراً لتسريع الإصلاحات، وما زاد عن ذلك يذهب إشعار فوري للمالك للاعتماد بضغطة زر). وفي الإيجارات، يحددها المدير بالاتفاق مع المالك، استناداً إلى <strong>مؤشر الإيجارات الرسمي (مثل مؤشر DLD Rental Index)</strong> لضمان التوافق القانوني.
+        </p>
+
+        <h4>س3: هل مدير العقار هو نفسه المحاسب؟</h4>
+        <p>
+            النظام يوفر دوراً مستقلاً للمحاسب المالي لتطبيق مبدأ فصل الصلاحيات والرقابة (Segregation of Duties). مدير العقار يعتمد الصيانة تشغيلياً، بينما يقوم المحاسب بمطابقة الفواتير مع السجلات وصرف المستحقات وتسجيلها كمصروفات تخصم من صافي أرباح المالك. (وفي الشركات الصغيرة، يمكن منح الصلاحيتين لنفس الشخص).
+        </p>
+
+        <h4>س4: ما هو تقاطع مالك المنصة (Super Admin) مع الحسابات الداخلية للشركات؟</h4>
+        <p>
+            لا يتدخل مالك المنصة أبداً في العمليات المالية الداخلية للشركات أو أرباح الملاك نظراً للعزل التام لبيانات كل شركة (Data Isolation). تقاطعه المالي يقتصر فقط على تحصيل اشتراكات الـ SaaS الدورية من الشركات، أو عمولة بوابات الدفع الإلكتروني العامة.
+        </p>
+
+        <h4>س5: كيف تضمن المنصة عدم تداخل بيانات الشركات العقارية؟</h4>
+        <p>
+            تعتمد المنصة معمارية Multi-Tenancy Architecture متقدمة مع عزل قواعد البيانات برمجياً عبر معرّف الشركة (Tenant ID Isolation)، مما يستحيل معه وصول أي شركة إلى بيانات أو عقود أو ملاك شركة أخرى.
+        </p>
+    </div>
+
+    <!-- Acceptance & Signature -->
+    <h2>10. الاعتماد وتوقيع الاتفاقية (Acceptance & Authorization)</h2>
+    <p>
+        باعتماد هذا العرض، يوافق الطرفان على خطة العمل والمراحل المذكورة أعلاه لبدء المرحلة الأولى فوراً وفق الدفعة الأولى المتفق عليها.
+    </p>
+
+    <table class="signature-box">
+        <tr>
+            <td>
+                <strong>الطرف الأول (العميل / شركة إدارة العقارات):</strong><br><br>
+                الاسم: ___________________________<br><br>
+                التوقيع: ___________________________<br><br>
+                التاريخ: _____ / _____ / 2026
+            </td>
+            <td>
+                <strong>الطرف الثاني (فريق الهندسة والتطوير):</strong><br><br>
+                الاسم: فريق تطوير منصة عقار دبي<br><br>
+                التوقيع: ___________________________<br><br>
+                التاريخ: _____ / _____ / 2026
+            </td>
+        </tr>
+    </table>
+
+    <div class="footer-note">
+        جميع الحقوق محفوظة &copy; 2026 | وثيقة عرض فني وتجاري سرية وخاصة بالعميل
+    </div>
+
+</body>
+</html>
